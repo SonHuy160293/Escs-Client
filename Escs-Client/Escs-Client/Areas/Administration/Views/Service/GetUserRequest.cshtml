@@ -1,0 +1,526 @@
+﻿@{
+    ViewData["Title"] = "Statistics Visualization"; 
+    var userId = ViewBag.UserId;
+    var endpoints = ViewBag.Endpoints as IEnumerable<Escs_Client.ViewModels.ServiceEndpointRegisterByUserResponse>;
+}
+<head>
+   
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .total-value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff0000; /* Blue background */
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: auto;
+            max-width: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <h3 class="text-center mb-2">Statistics Visualization</h3>
+        <div class="row mb-4">
+            <div class="col-md-2">
+                <label for="yearSelect" class="form-label">Select Year</label>
+                <select id="yearSelect" class="form-select">
+                    <option value="">Choose a year</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="monthSelect" class="form-label">Select Month</label>
+                <select id="monthSelect" class="form-select" disabled>
+                    <option value="">Choose a month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="daySelect" class="form-label">Select Date</label>
+                <input type="date" id="daySelect" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <label for="statusSelect" class="form-label">Status Code</label>
+                <select id="statusSelect" class="form-select">
+                    <option value="">Choose a status</option>
+                    <option value="1XX">1XX</option>
+                    <option value="2XX">2XX</option>
+                    <option value="3XX">3XX</option>
+                    <option value="4XX">4XX</option>
+                    <option value="5XX">5XX</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="endpointSelect" class="form-label">Endpoint</label>
+                <select id="endpointSelect" class="form-select">
+                    <option value="">Choose a endpoint</option>
+                    @foreach(var endpoint in ViewBag.Endpoints)
+                    {
+                        <option value="@endpoint.Url - @endpoint.Method">@endpoint.Url - @endpoint.Method</option>
+                    }
+
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button id="resetButton" class="btn btn-primary" style="margin-top: 30px">
+                    Reset 
+                </button>
+            </div>
+        </div>
+
+        <canvas id="barChart" height="100"></canvas>
+        <div id="totalValue" class="total-value">Total: 0</div>
+    </div>
+
+   
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const apiUrl = 'http://localhost:5280/api/Logs/response-detail-statistic';
+            const ctx = document.getElementById('barChart').getContext('2d');
+            let barChart;
+
+            // Function to format a JavaScript Date object into "dd-MM-yyyy HH:mm:ss"
+            function formatDate(date) {
+                console.log(date);
+
+                const options = {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                };
+
+                const formattedDate = new Intl.DateTimeFormat('en-GB', options)
+                    .format(date)
+                    .replace(/,/, '')
+                    .replace(/\//g, '-');
+                return formattedDate;
+            }
+
+            function renderChart(labels, data, averageProcessedTimes) {
+                if (barChart) {
+                    barChart.destroy();
+                }
+                barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Response Statistics',
+                                data: data,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                            },
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.dataset.label || '';
+                                        const value = context.raw;
+                                        const averageProcessedTime = averageProcessedTimes[context.dataIndex];
+                                        return `${label}: ${value} (Avg: ${averageProcessedTime} ms)`;
+                                    },
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+
+            // Update date input to match selected month and year
+            function updateDateInput(year, month) {
+                const daysInMonth = new Date(year, month, 0).getDate();
+                $('#daySelect').attr('min', `${year}-${String(month).padStart(2, '0')}-01`);
+                $('#daySelect').attr('max', `${year}-${String(month).padStart(2, '0')}-${daysInMonth}`);
+                $('#daySelect').val(''); // Clear any previously selected value
+                $('#daySelect').prop('disabled', false);
+            }
+
+            function fetchStatistics(params) {
+                $.ajax({
+                    url: apiUrl,
+                    type: 'GET',
+                    data: params,
+                    success: function (response) {
+                        const labels = Object.keys(response.data);
+                        const totalResponse = Object.values(response.data).map((item) => item.totalResponse);
+                        const averageProcessedTime = Object.values(response.data).map(
+                            (item) => item.averageProcessedTime,
+                        );
+                        console.log(totalResponse);
+                        $('#totalValue').text(`Total: ${response.total}`);
+                        renderChart(labels, totalResponse, averageProcessedTime);
+                    },
+                    error: function (err) {
+                        console.error('API call failed:', err);
+                    },
+                });
+            }
+
+            $('#yearSelect').change(function () {
+                const year = $(this).val();
+                const statusCode = $('#statusSelect').val() || '';
+                const endpoint = $('#endpointSelect').val();
+
+                let url = '';
+                let method = '';
+
+                if (endpoint) {
+                    [url, method] = endpoint.split('-').map(part => part.trim());
+
+                    if (!url || !method) {
+                        console.error("Invalid endpoint format. It should be in the format 'url-method'.");
+                        return; // Exit early if the endpoint is invalid
+                    }
+                    method = method.toUpperCase();
+                    console.log(`URL: ${url}, Method: ${method}`);
+                } else {
+                    console.warn("No endpoint selected.");
+                }
+
+                if (year) {
+                    $('#monthSelect').prop('disabled', false);
+
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString()
+                            ? new Date()
+                            : new Date(`${year}-12-31T23:59:59`)
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'year',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                } else {
+                    $('#monthSelect').prop('disabled', true);
+                }
+            });
+
+
+            $('#monthSelect').change(function () {
+                const year = $('#yearSelect').val();
+                const month = $(this).val();
+                const statusCode = $('#statusSelect').val() || '';
+                const endpoint = $('#endpointSelect').val();
+
+                let url = '';
+                let method = '';
+
+                if (endpoint) {
+                    [url, method] = endpoint.split('-').map(part => part.trim());
+
+                    if (!url || !method) {
+                        console.error("Invalid endpoint format. It should be in the format 'url-method'.");
+                        return; // Exit early if the endpoint is invalid
+                    }
+                    method = method.toUpperCase();
+                    console.log(`URL: ${url}, Method: ${method}`);
+                } else {
+                    console.warn("No endpoint selected.");
+                }
+                if (year && month) {
+                    updateDateInput(year, month);
+                    const daysInMonth = new Date(year, month, 0).getDate();
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString() &&
+                            month === (new Date().getMonth() + 1).toString()
+                            ? new Date()
+                            : new Date(`${year}-${String(month).padStart(2, '0')}-${daysInMonth}T23:59:59`),
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'month',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                }
+            });
+
+            $('#statusSelect').change(function () {
+                const year = $('#yearSelect').val();
+                const month = $('#monthSelect').val();
+                const selectedDate = $('#daySelect').val();
+                const statusCode = $(this).val() || '';
+                const endpoint = $('#endpointSelect').val();
+
+                let url = '';
+                let method = '';
+
+                if (endpoint) {
+                    [url, method] = endpoint.split('-').map(part => part.trim());
+
+                    if (!url || !method) {
+                        console.error("Invalid endpoint format. It should be in the format 'url-method'.");
+                        return; // Exit early if the endpoint is invalid
+                    }
+                    method = method.toUpperCase();
+                    console.log(`URL: ${url}, Method: ${method}`);
+                } else {
+                    console.warn("No endpoint selected.");
+                }
+
+                if (selectedDate && year && month) {
+                    const date = new Date(selectedDate);
+                    // Set time to 23:59:59
+                    date.setHours(23, 59, 59);
+
+                    const filterDate = formatDate(date);
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'day',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                } else if (!selectedDate && month && year) {
+                    updateDateInput(year, month);
+                    const daysInMonth = new Date(year, month, 0).getDate();
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString() &&
+                            month === (new Date().getMonth() + 1).toString()
+                            ? new Date()
+                            : new Date(`${year}-${String(month).padStart(2, '0')}-${daysInMonth}T23:59:59`),
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'month',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                } else if (!selectedDate && !month && year) {
+                    $('#monthSelect').prop('disabled', false);
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString()
+                            ? new Date()
+                            : new Date(`${year}-12-31T23:59:59`),
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'year',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                }
+
+                
+            });
+
+            $('#endpointSelect').change(function () {
+                const year = $('#yearSelect').val();
+                const month = $('#monthSelect').val();
+                const selectedDate = $('#daySelect').val();
+                const statusCode = $('#statusSelect').val();
+                const endpoint = $(this).val();
+
+                let url = '';
+                let method = '';
+
+                if (endpoint) {
+                    [url, method] = endpoint.split('-').map(part => part.trim());
+
+                    if (!url || !method) {
+                        console.error("Invalid endpoint format. It should be in the format 'url-method'.");
+                        return; // Exit early if the endpoint is invalid
+                    }
+                    method = method.toUpperCase();
+                    console.log(`URL: ${url}, Method: ${method}`);
+                } else {
+                    console.warn("No endpoint selected.");
+                }
+
+                if (selectedDate && year && month) {
+                    const date = new Date(selectedDate);
+                    // Set time to 23:59:59
+                    date.setHours(23, 59, 59);
+
+                    const filterDate = formatDate(date);
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'day',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                } else if (!selectedDate && month && year) {
+                    updateDateInput(year, month);
+                    const daysInMonth = new Date(year, month, 0).getDate();
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString() &&
+                            month === (new Date().getMonth() + 1).toString()
+                            ? new Date()
+                            : new Date(`${year}-${String(month).padStart(2, '0')}-${daysInMonth}T23:59:59`),
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'month',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                } else if (!selectedDate && !month && year) {
+                    $('#monthSelect').prop('disabled', false);
+                    const filterDate = formatDate(
+                        year === new Date().getFullYear().toString()
+                            ? new Date()
+                            : new Date(`${year}-12-31T23:59:59`),
+                    );
+
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'year',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                }
+
+
+            });
+
+            $('#daySelect').change(function () {
+                const selectedDate = $(this).val();
+                const statusCode = $('#statusSelect').val() || '';
+                const endpoint = $('#endpointSelect').val();
+
+                let url = '';
+                let method = '';
+
+                if (endpoint) {
+                    [url, method] = endpoint.split('-').map(part => part.trim());
+
+                    if (!url || !method) {
+                        console.error("Invalid endpoint format. It should be in the format 'url-method'.");
+                        return; // Exit early if the endpoint is invalid
+                    }
+                    method = method.toUpperCase();
+                    console.log(`URL: ${url}, Method: ${method}`);
+                } else {
+                    console.warn("No endpoint selected.");
+                }
+                if (selectedDate) {
+                    const date = new Date(selectedDate);
+                    // Set time to 23:59:59
+                    date.setHours(23, 59, 59);
+
+                    const filterDate = formatDate(date);
+                    fetchStatistics({
+                        UserId: @userId,
+                        FilterDate: filterDate,
+                        FilterType: 'day',
+                        Environment: 'Development',
+                        RequestPath: url,
+                        Method: method,
+                        Index: 'application-logs-emails-api-development-*',
+                        StatusCode: statusCode,
+                    });
+                }
+            });
+
+            const currentYear = new Date().getFullYear();
+            // Set default statistics
+            function setDefaultStatistics() {
+                const statusCode = $('#statusSelect').val() || '';
+                fetchStatistics({
+                    UserId: @userId,
+                    FilterDate: `31-12-${currentYear} 23:59:59`,
+                    FilterType: 'year',
+                    Environment: 'Development',
+                    RequestPath: '',
+                    Method:'',
+                    Index: 'application-logs-emails-api-development-*',
+                    StatusCode: statusCode,
+                });
+
+                // Initial load
+                $('#yearSelect').val(currentYear);
+                $('#monthSelect').prop('disabled', false);
+                $('#daySelect').prop('disabled', true);
+            }
+
+            // Reset button click
+            $('#resetButton').click(function () {
+                $('#yearSelect').val(currentYear);
+                $('#monthSelect').prop('disabled', true).val('');
+                $('#daySelect').prop('disabled', true).val('');
+                $('#statusSelect').val('');
+                $('#endpointSelect').val('');
+                setDefaultStatistics();
+            });
+
+            setDefaultStatistics();
+        });
+    </script>
+}
+
+
+
+

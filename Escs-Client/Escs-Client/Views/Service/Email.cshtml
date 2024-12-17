@@ -1,0 +1,199 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .hero {
+        background: url('https://via.placeholder.com/4adede/ffffff') no-repeat center center/cover;
+        color: #ffffff;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+        height: 30vh;
+    }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        
+    }
+
+    .btn-custom {
+        background-color: #ffa726;
+        color: #ffffff;
+        border: none;
+    }
+
+        .btn-custom:hover {
+            background-color: #fb8c00;
+        }
+
+    .features {
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+        background-color: #ffffff;
+    }
+
+        .features h2 {
+            margin-bottom: 30px;
+            color: #4adede;
+            font-weight: bold;
+        }
+
+        .features .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .features .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+
+    .btn-custom {
+        background-color: #ffa726;
+        color: #ffffff;
+        border: none;
+    }
+
+        .btn-custom:hover {
+            background-color: #fb8c00;
+        }
+</style>
+
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Effortless Email Sending Services</h1>
+                <p class="mt-3">
+                    Streamline your communication with fast, secure, and reliable email delivery.
+                </p>
+                <button class="btn btn-custom btn-lg mt-4" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features container text-center mt-5">
+            <h2>Why Choose Us?</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card feature-card p-4 border-0">
+                        <i class="bi bi-lightning-fill fs-1 text-warning"></i>
+                        <h4 class="mt-3">Lightning Speed</h4>
+                        <p>Deliver bulk emails instantly with optimized performance.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card p-4 border-0">
+                        <i class="bi bi-shield-check fs-1 text-warning"></i>
+                        <h4 class="mt-3">Enhanced Security</h4>
+                        <p>Keep your emails secure with state-of-the-art encryption.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card p-4 border-0">
+                        <i class="bi bi-bar-chart-line fs-1 text-warning"></i>
+                        <h4 class="mt-3">Comprehensive Analytics</h4>
+                        <p>Track email engagement with detailed analytics reports.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Register Email Configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="emailConfigForm" action="/Service/EmailConfiguration" method="post">
+                    @* CSRF Token for security *@
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label for="smtpEmail" class="form-label">Smtp Email</label>
+                        <input type="email" class="form-control" id="smtpEmail" name="SmtpEmail" required>
+                        <div class="invalid-feedback">SmtpEmail is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="smtpPassword" class="form-label">Smtp Password</label>
+                        <input type="password" class="form-control" id="smtpPassword" name="SmtpPassword" required>
+                        <div class="invalid-feedback">SmtpPassword is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="smtpPort" class="form-label">Smtp Port</label>
+                        <input type="number" class="form-control" id="smtpPort" name="SmtpPort" required>
+                        <div class="invalid-feedback">SmtpPort is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Access Permissions *</label>
+                        @if (ViewBag.ServiceEndpoints != null)
+                        {
+                            foreach (var endpoint in (IEnumerable<Escs_Client.ViewModels.ServiceEndpointResponse>)ViewBag.ServiceEndpoints)
+                            {
+                                @if (endpoint.IsActive)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="allow_@endpoint.Id"
+                                               name="EndpointsId"
+                                               value="@endpoint.Id" />
+                                        <label class="form-check-label" for="allow_@endpoint.Id">
+                                            @endpoint.Url - @endpoint.Description
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <p>No service endpoints available.</p>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.getElementById('emailConfigForm').addEventListener('submit', function (event) {
+            // Optional: Client-side validation can go here.
+            const form = event.target;
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                form.classList.add('was-validated');
+            }
+        });
+    </script>
+}

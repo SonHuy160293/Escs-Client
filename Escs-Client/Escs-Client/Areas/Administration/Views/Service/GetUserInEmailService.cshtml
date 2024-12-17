@@ -1,0 +1,105 @@
+﻿@model Escs_Client.ViewModels.ItemPagingResponse<Escs_Client.ViewModels.UserResponse>
+@{
+    ViewData["Title"] = "Users in Email Service";
+}
+
+@{
+    ViewData["Title"] = "Users in Email Service";
+    var userName = ViewData["UserName"] as string ?? string.Empty;
+    var pageIndex = ViewData["PageIndex"] as int? ?? 1;
+    var pageSize = ViewData["PageSize"] as int? ?? 5;
+}
+
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <h1>Users in Email Service</h1>
+
+        <!-- Search Form -->
+        <form method="get" class="mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" name="UserName" class="form-control" placeholder="Search by UserName" value="@userName" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Users Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Items != null && Model.Items.Any())
+                {
+                    foreach (var user in Model.Items)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>
+                                <a href="/Administration/Service/GetUserRequest?userId=@user.UserId" type="button"
+                                        class="btn btn-warning btn-request"
+                                        data-id="@user.UserId">
+                                    View request
+                                </a>
+                                <button type="button"
+                                        class="btn btn-info btn-config"
+                                        data-id="@user.UserId">
+                                    View config
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">No users found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="?UserName=@userName&PageIndex=@(pageIndex - 1)&PageSize=@pageSize">Previous</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(pageIndex == i ? "active" : "")">
+                        <a class="page-link" href="?UserName=@userName&PageIndex=@i&PageSize=@pageSize">@i</a>
+                    </li>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="?UserName=@userName&PageIndex=@(pageIndex + 1)&PageSize=@pageSize">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+
+
+</div>
+
+

@@ -1,0 +1,207 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    .header-title {
+        margin-bottom: 20px;
+       
+    }
+
+    .table-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      
+    }
+
+    .table thead th {
+        background-color: #f1f3f5;
+        text-align: center;
+
+    }
+
+    .btn-create {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+
+    .action-buttons i {
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+        .action-buttons i:hover {
+            color: #007bff;
+        }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .modal-header {
+        background-color: #28a745;
+        color: #fff;
+    }
+</style>
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <div class="header-title">
+            <h1 class="h4">Email Configuration</h1>
+
+            <button class="btn btn-create"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createConfigModal">
+                <i class="bi bi-plus-circle"></i> Tạo config
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-hover table-bordered text-center" style="height: 50vh">
+                <thead>
+                    <tr>
+                        <th scope="col">SMTP Email</th>
+                        <th scope="col">SMTP Port</th>
+                        <th scope="col">SMTP Password</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.EmailConfigurations != null)
+                    {
+                        foreach (var congfig in ViewBag.EmailConfigurations)
+                        {
+                            <tr>
+                                <td>@congfig.SmtpEmail</td>
+                                <td>@congfig.SmtpPort</td>
+                                <td>@congfig.SmtpPassword</td>
+
+                                <td>
+                                    <span class="badge @(congfig.IsActive ? "bg-success" : "bg-secondary")">
+                                        @(congfig.IsActive ? "Active" : "Inactive")
+                                    </span>
+                                </td>
+                                <td class="action-buttons">
+
+                                    <button type="button"
+                                            class="btn btn-warning btn-update"
+                                            data-id="@congfig.Id">
+                                        Update
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">No config found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+           
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Create Config Modal -->
+<div class="modal fade"
+     id="createConfigModal"
+     tabindex="-1"
+     aria-labelledby="createConfigModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createConfigModalLabel">Tạo Token</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="emailConfigForm" asp-action="EmailConfiguration" method="post">
+                    @* CSRF Token for security *@
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="smtpEmail" class="form-label">Smtp Email</label>
+                            <input type="email" class="form-control" id="smtpEmail" name="SmtpEmail" required>
+                            <div class="invalid-feedback">SmtpEmail is required</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="smtpPassword" class="form-label">Smtp Password</label>
+                            <input type="password" class="form-control" id="smtpPassword" name="SmtpPassword" required>
+                            <div class="invalid-feedback">SmtpPassword is required</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="smtpPort" class="form-label">Smtp Port</label>
+                            <input type="number" class="form-control" id="smtpPort" name="SmtpPort" required>
+                            <div class="invalid-feedback">SmtpPort is required</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Config Modal -->
+<div class="modal fade" id="updateConfigModal" tabindex="-1" aria-labelledby="updateConfigModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Endpoint</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="updateConfigModalContent"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/key.js"></script>
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Attach click event to the Update buttons
+            document.querySelectorAll('.btn-update').forEach(button => {
+                button.addEventListener('click', function () {
+                    const config = this.dataset.id;
+
+                    // Fetch the partial view from the server
+                    fetch(`/Service/GetConfigUpdateModal?id=${config}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            // Insert the partial view's content into the modal
+                            document.getElementById('updateConfigModalContent').innerHTML = html;
+
+                            // Show the modal
+                            new bootstrap.Modal(document.getElementById('updateConfigModal')).show();
+                        });
+                });
+            });
+        });
+    </script>
+
+}

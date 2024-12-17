@@ -1,0 +1,117 @@
+
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 1040;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .sidebar .nav-link {
+        font-size: 1rem;
+    }
+
+/* Header Styles */
+.header {
+    background-color: rgb(37, 40, 47);
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    height: 50px;
+    top: 0;
+    width: 100%;
+    z-index: 1050;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.header-below {
+    background-color: rgb(255, 255, 255);
+    color: #343a40;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    position: fixed;
+    top: 40px; /* Adjusted to appear just below the main header */
+    width: 100%;
+    z-index: 1040;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+    .header-below .toggle-btn {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #343a40;
+    }
+
+.content {
+    margin-top: 80px; /* Adjust based on combined header heights */
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+    .content.expanded {
+        margin-left: 250px;
+    }
+
+.section button {
+    width: 100%;
+    text-align: left;
+}
+
+    .section button span {
+        transition: transform 0.2s;
+    }
+
+    .section button[aria-expanded='true'] span {
+        transform: rotate(180deg); /* Rotate arrow when expanded */
+    }
+
+/* Hover effect for navigation links */
+.nav-link {
+    position: relative;
+    color: #343a40;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .nav-link:hover {
+        color: #ffffff;
+        background-color: #d6e5f5; /* Change to your preferred hover color */
+        text-decoration: none; /* Ensure no underline */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow effect */
+    }
+
+    /* Adding a sliding underline effect */
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background-color: #007bff;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%; /* Underline expands fully on hover */
+    }

@@ -1,0 +1,253 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    .header-title {
+        margin-bottom: 20px;
+      
+    }
+
+    .table-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+       
+    }
+
+    .table thead th {
+        background-color: #f1f3f5;
+        text-align: center;
+
+    }
+
+    .btn-create {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+
+    .action-buttons i {
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+        .action-buttons i:hover {
+            color: #007bff;
+        }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .modal-header {
+        background-color: #28a745;
+        color: #fff;
+    }
+</style>
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <div class="header-title">
+            <h1 class="h4">Cấu hình API</h1>
+            <p>Giao diện quản lý danh sách API token</p>
+            @if (ViewBag.UserKeyActive == true)
+            {
+
+                <button class="disabled">
+                    <i class="bi bi-plus-circle "></i> Tạo token
+                </button> <p style="font-weight:bolder">Only 1 key is active at a time</p>
+            }
+            else
+            {
+                <button class="btn btn-create"
+                        data-bs-toggle="modal"
+                        data-bs-target="#createTokenModal">
+                    <i class="bi bi-plus-circle"></i> Tạo token
+                </button>
+            }
+        </div>
+
+        <div class="table-container">
+            <table class="table table-hover table-bordered text-center" style="height: 50vh">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Key</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col">Endpoints</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.UserKeys != null)
+                    {
+                        foreach (var key in ViewBag.UserKeys)
+                        {
+                            <tr>
+
+                                <td>@key.Key</td>
+                                <td>@key.CreatedOn.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var endpoint in key.AllowedEndpoints)
+                                        {
+                                            <li>
+                                                <strong>(*) @endpoint.Method</strong> - @endpoint.Url - <small>@endpoint.Description</small>
+                                            </li>
+                                        }
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span class="badge @(key.IsActive ? "bg-success" : "bg-secondary")">
+                                        @(key.IsActive ? "Active" : "Inactive")
+                                    </span>
+                                </td>
+                                <td class="action-buttons">
+
+                                    @if (key.IsActive)
+                                    {
+                                        <!-- Delete Button -->
+                                        <button class="btn btn-link text-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteTokenModal"
+                                                data-key-id="@key.Id"
+                                                data-key-name="@key.Key">
+                                            <i class="bi bi-trash" title="Delete"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">No API keys found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+           
+        </div>
+    </div>
+</div>
+
+
+<!-- Create Token Modal -->
+<div class="modal fade"
+     id="createTokenModal"
+     tabindex="-1"
+     aria-labelledby="createTokenModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTokenModalLabel">Tạo Token</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tokenForm" asp-action="ApiKeyEmail" method="post">
+                    @* CSRF Token for security *@
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Access Permissions *</label>
+                        @if (ViewBag.ServiceEndpoints != null)
+                        {
+                            foreach (var endpoint in (IEnumerable<Escs_Client.ViewModels.ServiceEndpointResponse>)ViewBag.ServiceEndpoints)
+                            {
+                                @if (endpoint.IsActive)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="allow_@endpoint.Id"
+                                               name="EndpointsId"
+                                               value="@endpoint.Id" />
+                                        <label class="form-check-label" for="allow_@endpoint.Id">
+                                            @endpoint.Url - @endpoint.Description
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <p>No service endpoints available.</p>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteTokenModal" tabindex="-1" aria-labelledby="deleteTokenModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteTokenModalLabel">Xác nhận xóa token</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="~/images/bin.jpg" alt="Confirmation Icon" class="mb-3" style="width: 100px" />
+                <p id="modalDeleteMessage">Bạn có chắc chắn muốn xóa <strong></strong> không?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Đóng</button>
+                <form method="post" asp-action="UpdateApiKeyStatus">
+                    <input type="hidden" id="modalKeyId" name="Id" value="" />
+                    <input type="hidden" name="IsActive" value="false" />
+                    <button type="submit" class="btn btn-success">Ok</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="~/js/key.js"></script>
+    <script>
+        // Event listener for opening the modal
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteTokenModal = document.getElementById('deleteTokenModal');
+            const modalKeyIdInput = document.getElementById('modalKeyId');
+            const modalDeleteMessage = document.getElementById('modalDeleteMessage');
+
+            // Listen for modal trigger buttons
+            document.querySelectorAll('button[data-bs-toggle="modal"]').forEach(button => {
+                button.addEventListener('click', function () {
+                    const keyId = this.getAttribute('data-key-id');
+                    const keyName = this.getAttribute('data-key-name');
+
+                    // Update hidden input and message in modal
+                    modalKeyIdInput.value = keyId;
+                    modalDeleteMessage.querySelector('strong').textContent = keyName;
+                });
+            });
+        });
+    </script>
+
+  
+
+}

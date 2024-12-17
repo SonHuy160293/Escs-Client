@@ -1,0 +1,718 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Document\\Documents\\ESCS\\Escs-Client\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\service\\getuserrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\service\\getuserrequest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\service\\getendpointusage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\service\\getendpointusage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\viewmodels\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\viewmodels\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\interfaces\\ikeyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\interfaces\\ikeyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\services\\keyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\services\\keyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\interfaces\\iendpointservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\interfaces\\iendpointservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\escs-client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\escs-client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\service\\getuserinemailservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\service\\getuserinemailservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\services\\authenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\services\\authenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\services\\endpointservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\services\\endpointservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\interfaces\\ihttpcaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\interfaces\\ihttpcaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\services\\httpcaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\services\\httpcaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\common\\basehttpresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\common\\basehttpresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\key\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\key\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\service\\_updateendpointpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\service\\_updateendpointpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\service\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\service\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\service\\apikeyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\service\\apikeyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\service\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\service\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\interfaces\\iauthenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\interfaces\\iauthenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\areas\\administration\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\areas\\administration\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\service\\emailconfiguration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\service\\emailconfiguration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\helpers\\refreshtokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\helpers\\refreshtokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\service\\_updateuseremailconfigpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\service\\_updateuseremailconfigpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\viewmodels\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\viewmodels\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\viewmodels\\emailconfigurationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\viewmodels\\emailconfigurationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\authentication\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\authentication\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\authentication\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\authentication\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|d:\\document\\documents\\escs\\escs-client\\escs-client\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A09A3810-DEE0-4ABC-9FB8-FDDD5D5F66C7}|Escs-Client\\Escs-Client.csproj|solutionrelative:escs-client\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\exceptions\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\exceptions\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\extensions\\httpcontextextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\extensions\\httpcontextextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|d:\\document\\documents\\escs\\escs-client\\buildingblocks\\common\\basesearchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9574521-BDD1-451F-A78E-B703B5867056}|BuildingBlocks\\BuildingBlocks.csproj|solutionrelative:buildingblocks\\common\\basesearchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 235,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Controllers\\ServiceController.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAiwIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T04:30:49.353Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetUserRequest.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserRequest.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserRequest.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserRequest.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserRequest.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGQAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T02:12:36.233Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetEndpointUsage.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetEndpointUsage.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetEndpointUsage.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetEndpointUsage.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetEndpointUsage.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAAMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T07:48:36.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Response.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\Response.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\ViewModels\\Response.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\Response.cs",
+              "RelativeToolTip": "Escs-Client\\ViewModels\\Response.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAIA5wFwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:17:14.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IEndpointService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IEndpointService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Interfaces\\IEndpointService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IEndpointService.cs",
+              "RelativeToolTip": "Escs-Client\\Interfaces\\IEndpointService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T09:39:42.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IKeyService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IKeyService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Interfaces\\IKeyService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IKeyService.cs",
+              "RelativeToolTip": "Escs-Client\\Interfaces\\IKeyService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAlwAsAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:19:29.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "KeyService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\KeyService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Services\\KeyService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\KeyService.cs",
+              "RelativeToolTip": "Escs-Client\\Services\\KeyService.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAkwG4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T09:41:14.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Escs-Client.csproj",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Escs-Client.csproj",
+              "RelativeDocumentMoniker": "Escs-Client\\Escs-Client.csproj",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Escs-Client.csproj",
+              "RelativeToolTip": "Escs-Client\\Escs-Client.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-12T07:41:58.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HttpCaller.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Services\\HttpCaller.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Services\\HttpCaller.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Services\\HttpCaller.cs",
+              "RelativeToolTip": "BuildingBlocks\\Services\\HttpCaller.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAIA0wD4AAACZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:26:01.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IHttpCaller.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Interfaces\\IHttpCaller.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Interfaces\\IHttpCaller.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Interfaces\\IHttpCaller.cs",
+              "RelativeToolTip": "BuildingBlocks\\Interfaces\\IHttpCaller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:25:58.134Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EndpointService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\EndpointService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Services\\EndpointService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\EndpointService.cs",
+              "RelativeToolTip": "Escs-Client\\Services\\EndpointService.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwDcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T09:41:33.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Services\\EmailService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\EmailService.cs",
+              "RelativeToolTip": "Escs-Client\\Services\\EmailService.cs",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAuwM4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:02:56.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthenService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\AuthenService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Services\\AuthenService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Services\\AuthenService.cs",
+              "RelativeToolTip": "Escs-Client\\Services\\AuthenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:55:52.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GetUserInEmailService.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserInEmailService.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserInEmailService.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserInEmailService.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Service\\GetUserInEmailService.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAC8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-02T08:02:17.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BaseHttpResult.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Common\\BaseHttpResult.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Common\\BaseHttpResult.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Common\\BaseHttpResult.cs",
+              "RelativeToolTip": "BuildingBlocks\\Common\\BaseHttpResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T04:06:47.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Email.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\Email.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Service\\Email.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\Email.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Service\\Email.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-02T08:05:17.4Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_UpdateEndpointPartial.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\_UpdateEndpointPartial.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Service\\_UpdateEndpointPartial.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Service\\_UpdateEndpointPartial.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Service\\_UpdateEndpointPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T07:53:56.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_SideBar.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_SideBar.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_SideBar.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_SideBar.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_SideBar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T02:05:38.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Key\\Index.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Key\\Index.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Key\\Index.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Key\\Index.cshtml",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T02:10:00.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T09:57:40.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T02:13:58.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T02:14:01.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Controllers\\ServiceController.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Escs-Client\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAQwLUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:55:21.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Email.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\Email.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Service\\Email.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\Email.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Service\\Email.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAKMAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T07:54:19.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ApiKeyEmail.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\ApiKeyEmail.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Service\\ApiKeyEmail.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\ApiKeyEmail.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Service\\ApiKeyEmail.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAJMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T07:19:19.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IAuthenService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IAuthenService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Interfaces\\IAuthenService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IAuthenService.cs",
+              "RelativeToolTip": "Escs-Client\\Interfaces\\IAuthenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T09:39:44.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Areas\\Administration\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Escs-Client\\Areas\\Administration\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T09:57:36.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RefreshTokenHandler.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Helpers\\RefreshTokenHandler.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Helpers\\RefreshTokenHandler.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Helpers\\RefreshTokenHandler.cs",
+              "RelativeToolTip": "Escs-Client\\Helpers\\RefreshTokenHandler.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAmwF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T09:17:14.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "EmailConfiguration.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\EmailConfiguration.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Service\\EmailConfiguration.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\EmailConfiguration.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Service\\EmailConfiguration.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAALoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T08:03:39.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "_UpdateUserEmailConfigPartial.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\_UpdateUserEmailConfigPartial.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Service\\_UpdateUserEmailConfigPartial.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Service\\_UpdateUserEmailConfigPartial.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Service\\_UpdateUserEmailConfigPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T04:40:07.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IEmailService.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\Interfaces\\IEmailService.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Interfaces\\IEmailService.cs",
+              "RelativeToolTip": "Escs-Client\\Interfaces\\IEmailService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwAsAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:02:57.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Request.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\Request.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\ViewModels\\Request.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\Request.cs",
+              "RelativeToolTip": "Escs-Client\\ViewModels\\Request.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAA4wDIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T09:40:22.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "EmailConfigurationViewModel.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\EmailConfigurationViewModel.cs",
+              "RelativeDocumentMoniker": "Escs-Client\\ViewModels\\EmailConfigurationViewModel.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\ViewModels\\EmailConfigurationViewModel.cs",
+              "RelativeToolTip": "Escs-Client\\ViewModels\\EmailConfigurationViewModel.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA3wBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T03:04:47.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\appsettings.json",
+              "RelativeDocumentMoniker": "Escs-Client\\appsettings.json",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\appsettings.json",
+              "RelativeToolTip": "Escs-Client\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-04T03:52:27.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T08:03:37.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T08:03:36.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Authentication\\Register.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Authentication\\Register.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Authentication\\Register.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Authentication\\Register.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T07:55:56.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Shared\\_Header.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Shared\\_Header.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Shared\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T07:56:04.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Authentication\\Login.cshtml",
+              "RelativeDocumentMoniker": "Escs-Client\\Views\\Authentication\\Login.cshtml",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\Escs-Client\\Views\\Authentication\\Login.cshtml",
+              "RelativeToolTip": "Escs-Client\\Views\\Authentication\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T07:55:55.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "BusinessException.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Exceptions\\BusinessException.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Exceptions\\BusinessException.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Exceptions\\BusinessException.cs",
+              "RelativeToolTip": "BuildingBlocks\\Exceptions\\BusinessException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:25:53.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "HttpContextExtension.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Extensions\\HttpContextExtension.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Extensions\\HttpContextExtension.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Extensions\\HttpContextExtension.cs",
+              "RelativeToolTip": "BuildingBlocks\\Extensions\\HttpContextExtension.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T07:25:28.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "BaseSearchRequest.cs",
+              "DocumentMoniker": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Common\\BaseSearchRequest.cs",
+              "RelativeDocumentMoniker": "BuildingBlocks\\Common\\BaseSearchRequest.cs",
+              "ToolTip": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\Common\\BaseSearchRequest.cs",
+              "RelativeToolTip": "BuildingBlocks\\Common\\BaseSearchRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T08:21:10.908Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 116,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

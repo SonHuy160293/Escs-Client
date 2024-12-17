@@ -1,0 +1,130 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Escs_Client.ViewModels.ServiceEndpointResponse>
+
+<div id="content" class="content p-4">
+    <div class="container">
+        <h2>Endpoints</h2>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createEndpointModal">Create Endpoint</button>
+        <button class="btn btn-primary mb-3" >View User</button>
+        <!-- Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>URL</th>
+                    <th>Description</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var endpoint in Model)
+                {
+                    <tr>
+                        <td>@endpoint.Method</td>
+                        <td>@endpoint.Url</td>
+                        <td>@endpoint.Description</td>
+                        <td>@(endpoint.IsActive ? "Yes" : "No")</td>
+                        <td>
+                            <button type="button"
+                                    class="btn btn-warning btn-update"
+                                    data-id="@endpoint.Id">
+                                Update
+                            </button>
+
+                            <a href="/Administration/Service/GetEndpointUsage?endpoint=@endpoint.Url-@endpoint.Method" type="button"
+                               class="btn btn-primary btn-request">
+                                View Statistic
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+   
+
+
+
+    <div class="modal fade" id="createEndpointModal" tabindex="-1" aria-labelledby="createEndpointModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Endpoint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="CreateEndpoint" method="post">
+                        <div class="mb-3">
+                            <label for="method" class="form-label">Method</label>
+                            <input type="text" class="form-control" id="method" name="Method" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url" class="form-label">URL</label>
+                            <input type="text" class="form-control" id="url" name="Url" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="description" name="Description" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="updateEndpointModal" tabindex="-1" aria-labelledby="updateEndpointModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Endpoint</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <div id="updateModalContent"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+@section Scripts{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Attach click event to the Update buttons
+            document.querySelectorAll('.btn-update').forEach(button => {
+                button.addEventListener('click', function () {
+                    const endpointId = this.dataset.id;
+
+                    // Fetch the partial view from the server
+                    fetch(`/Administration/Service/GetUpdateModal?id=${endpointId}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            // Insert the partial view's content into the modal
+                            document.getElementById('updateModalContent').innerHTML = html;
+
+                            // Show the modal
+                            new bootstrap.Modal(document.getElementById('updateEndpointModal')).show();
+                        });
+                });
+            });
+        });
+    </script>
+
+}

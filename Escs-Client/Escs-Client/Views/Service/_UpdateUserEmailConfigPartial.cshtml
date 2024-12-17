@@ -1,0 +1,25 @@
+﻿@model Escs_Client.ViewModels.EmailConfigurationDetailResponse
+
+<form asp-action="UpdateUserEmailConfig" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="mb-3">
+        <label for="smtpEmail" class="form-label">Smtp Email</label>
+        <input type="text" class="form-control" id="smtpEmail" name="SmtpEmail" value="@Model.SmtpEmail" required>
+    </div>
+    <div class="mb-3">
+        <label for="smtpPassword" class="form-label">Smtp Password</label>
+        <input type="text" class="form-control" id="smtpPassword" name="SmtpPassword" value="@Model.SmtpPassword" required>
+    </div>
+    <div class="mb-3">
+        <label for="smtpPort" class="form-label">Smtp Port</label>
+        <input type="text" class="form-control" id="smtpPort" name="SmtpPort" value="@Model.SmtpPort" required>
+    </div>
+    <div class="mb-3">
+        <label for="isActive" class="form-label">Active</label>
+        <select class="form-select" id="isActive" name="IsActive">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
