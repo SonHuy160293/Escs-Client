@@ -71,10 +71,9 @@ namespace Escs_Client.Controllers
             emailConfigurationViewModel.ServiceId = 1;
 
             var createEmailConfigResult = await _emailService.CreateEmailConfiguration(emailConfigurationViewModel);
-
-            if (EndpointsId.Any())
+            if (createEmailConfigResult.Succeeded)
             {
-                if (createEmailConfigResult.Succeeded)
+                if (EndpointsId.Any())
                 {
                     var createUserApiKeyRequest = new CreateUserApiKeyRequest
                     {
@@ -104,16 +103,11 @@ namespace Escs_Client.Controllers
                 }
                 else
                 {
-                    // Handle login failure
-                    TempData["ErrorMessage"] = createEmailConfigResult.ErrorMessage;
-                    return View(emailConfigurationViewModel);
+                    return Json(new { success = true });
                 }
             }
-            else
-            {
-                return RedirectToAction("Email");
-            }
 
+            return Json(new { success = false, message = createEmailConfigResult.ErrorMessage });
 
 
         }

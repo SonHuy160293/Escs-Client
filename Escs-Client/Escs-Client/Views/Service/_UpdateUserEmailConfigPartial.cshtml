@@ -12,13 +12,13 @@
     </div>
     <div class="mb-3">
         <label for="smtpPort" class="form-label">Smtp Port</label>
-        <input type="text" class="form-control" id="smtpPort" name="SmtpPort" value="@Model.SmtpPort" required>
+        <input type="text" class="form-control" id="smtpPort" name="SmtpPort" value="@Model.SmtpPort" readonly>
     </div>
     <div class="mb-3">
         <label for="isActive" class="form-label">Active</label>
         <select class="form-select" id="isActive" name="IsActive">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value="true" selected="@(Model.IsActive ? "selected" : null)">Yes</option>
+            <option value="false" selected="@(!Model.IsActive ? "selected" : null)">No</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
