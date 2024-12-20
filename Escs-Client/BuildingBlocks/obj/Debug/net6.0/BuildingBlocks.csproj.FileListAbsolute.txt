@@ -10,3 +10,16 @@ D:\Document\Documents\ESCS\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingB
 D:\Document\Documents\ESCS\Escs-Client\BuildingBlocks\obj\Debug\net6.0\refint\BuildingBlocks.dll
 D:\Document\Documents\ESCS\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.pdb
 D:\Document\Documents\ESCS\Escs-Client\BuildingBlocks\obj\Debug\net6.0\ref\BuildingBlocks.dll
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\bin\Debug\net6.0\BuildingBlocks.deps.json
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\bin\Debug\net6.0\BuildingBlocks.dll
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\bin\Debug\net6.0\BuildingBlocks.pdb
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.csproj.AssemblyReference.cache
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.GeneratedMSBuildEditorConfig.editorconfig
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.AssemblyInfoInputs.cache
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.AssemblyInfo.cs
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.csproj.CoreCompileInputs.cache
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.sourcelink.json
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.dll
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\refint\BuildingBlocks.dll
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\BuildingBlocks.pdb
+D:\Document\Documents\ESCS\Git\Escs-Client\Escs-Client\BuildingBlocks\obj\Debug\net6.0\ref\BuildingBlocks.dll

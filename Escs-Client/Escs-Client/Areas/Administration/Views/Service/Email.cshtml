@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var emailIndex = ViewBag.EmailIndex;
 }
 
 @model IEnumerable<Escs_Client.ViewModels.ServiceEndpointResponse>
@@ -10,7 +11,20 @@
     <div class="container">
         <h2>Endpoints</h2>
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createEndpointModal">Create Endpoint</button>
-        <button class="btn btn-primary mb-3" >View User</button>
+        <a href="/Administration/Service/GetUserInEmailService" type="button"
+           class="btn btn-info btn-user mb-3">
+            View User
+        </a>
+        <a href="/Administration/Service/SearchLogs?index=@emailIndex" type="button"
+           class="btn btn-warning btn-log mb-3"
+           data-id="@emailIndex">
+            View log
+        </a>
+        <a href="/Administration/Service/RequestLogs?index=@emailIndex" type="button"
+           class="btn btn-success btn-log mb-3"
+           data-id="@emailIndex">
+            View request
+        </a>
         <!-- Table -->
         <table class="table table-bordered">
             <thead>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj": {}
+    "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj": {}
   },
   "projects": {
-    "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectPath": "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
         "packagesPath": "C:\\Users\\adim\\.nuget\\packages\\",
-        "outputPath": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\obj\\",
+        "outputPath": "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adim\\AppData\\Roaming\\NuGet\\NuGet.Config",

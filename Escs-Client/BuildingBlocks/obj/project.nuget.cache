@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XmiGuVz6FyQ=",
+  "dgSpecHash": "nNjLoz68TWg=",
   "success": true,
-  "projectFilePath": "D:\\Document\\Documents\\ESCS\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
+  "projectFilePath": "D:\\Document\\Documents\\ESCS\\Git\\Escs-Client\\Escs-Client\\BuildingBlocks\\BuildingBlocks.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adim\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\adim\\.nuget\\packages\\microsoft.bcl.timeprovider\\8.0.0\\microsoft.bcl.timeprovider.8.0.0.nupkg.sha512",

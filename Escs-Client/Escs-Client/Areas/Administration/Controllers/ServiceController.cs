@@ -11,12 +11,14 @@ namespace Escs_Client.Areas.Administration.Controllers
         private readonly IEmailService _emailService;
         private readonly IEndpointService _endpointService;
         private readonly IKeyService _keyService;
+        private readonly IConfiguration _configuration;
 
-        public ServiceController(IEmailService emailService, IEndpointService endpointService, IKeyService keyService)
+        public ServiceController(IEmailService emailService, IEndpointService endpointService, IKeyService keyService, IConfiguration configuration)
         {
             _emailService = emailService;
             _endpointService = endpointService;
             _keyService = keyService;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -27,6 +29,11 @@ namespace Escs_Client.Areas.Administration.Controllers
         [HttpGet]
         public async Task<IActionResult> Email()
         {
+            // Retrieve the email index from the configuration
+            var emailIndex = _configuration.GetSection("ServiceIndex:Email").Value;
+
+            // Pass the email index to the service or directly to the ViewBag
+            ViewBag.EmailIndex = emailIndex;
             var endpoints = await _emailService.GetEndpointOfEmailService();
             return View(endpoints.Data);
         }
@@ -140,6 +147,18 @@ namespace Escs_Client.Areas.Administration.Controllers
             ViewBag.Method = endpointSplit[1];
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> SearchLogs(string index)
+        {
+            ViewBag.Index = index;
+            return View();
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> RequestLogs(string index)
+        {
+            ViewBag.Index = index;
+            return View();
+        }
     }
 }

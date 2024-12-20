@@ -1,0 +1,909 @@
+﻿@{
+    ViewData["Title"] = "Logs Visualization";
+    var index = ViewBag.Index;
+    var sanitizedIndex = index.EndsWith("*") ? index.Substring(0, index.Length - 1) : index; // Use Substring for compatibility
+
+}
+<head>
+
+    <link href="~/sbAdmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/sbAdmin/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="~/sbAdmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/css/log.css" rel="stylesheet" />
+</head>
+
+<div id="content" class="content p-4">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Page Content -->
+            <div class="container-fluid">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <form id="searchForm">
+                            <div class="row d-flex justify-content-between">
+                                <div class="col-md-4">
+                                    <div class="col-md-auto">
+                                        <button type="button" id="add-filter-btn" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-plus"></i> Thêm Bộ Lọc
+                                        </button>
+                                    </div>
+
+                                    <!-- Hiển thị các bộ lọc đang áp dụng -->
+                                    <div class="col-md-auto d-flex flex-wrap" id="active-filters">
+                                        <!-- Các tag bộ lọc sẽ được chèn vào đây -->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-row mb-4">
+                                        <!-- Date Range Fields -->
+                                        <div class="col-md-8">
+                                            <label class="form-label">Absolute Filter:</label>
+                                            <div class="d-flex gap-2">
+                                                <input type="datetime-local"
+                                                       id="fromDate"
+                                                       class="form-control"
+                                                       placeholder="From Date" />
+                                                <input type="datetime-local"
+                                                       id="toDate"
+                                                       class="form-control"
+                                                       placeholder="To Date" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label for="relativeFilter" class="form-label">Relative Filter:</label>
+                                            <select id="relativeFilter" class="form-select">
+                                                <option value="" selected>Choose</option>
+                                                <option value="last15Minutes">Last 15 Minutes</option>
+                                                <option value="last30Minutes">Last 30 Minutes</option>
+                                                <option value="last45Minutes">Last 45 Minutes</option>
+                                                <option value="lastHour">Last Hour</option>
+                                                <option value="last6Hour">Last 6 Hour</option>
+                                                <option value="last12Hour">Last 12 Hour</option>
+                                                <option value="lastDay">Last Day</option>
+                                                <option value="lastWeek">Last Week</option>
+                                                <option value="lastMonth">Last Month</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-1 form-group">
+                                            <label for="sortBy">Sort By:</label>
+                                            <select id="sortBy" class="form-control">
+                                                <option value="false">Earliest</option>
+                                                <option value="true">Latest</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label>Từ khóa liên quan</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="searchTerm"
+                                                   id="searchTerm"
+                                                   placeholder="Tìm kiếm theo từ khóa" />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Số bản ghi</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   name="size"
+                                                   id="size"
+                                                   min="1"
+                                                   max="1000"
+                                                   value="100" />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="row d-flex">
+                                                <div class="d-grid gap-2 d-md-block col-md-4">
+                                                    <button type="button"
+                                                            id="searchButton"
+                                                            class="btn btn-primary"
+                                                            style="margin-top: 32px !important">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <button id="resetButton"
+                                                            type="button"
+                                                            class="btn btn-primary"
+                                                            style="margin-top: 32px !important">
+                                                        Reset
+                                                    </button>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-body">
+                        <div id="loadingSpinner" class="text-center my-4" style="display: none">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="table-responsive"
+                             style="max-height: 60vh !important; overflow-y: auto !important">
+                            <table class="table table-bordered table-striped" id="logsTable">
+                                <thead class="sticky-header">
+                                    <tr>
+                                        <th style="width: 15%">Time Stamp</th>
+                                        <th style="width: 10%">Level</th>
+
+                                        <th style="width: 25%">CorrelationId</th>
+
+                                        <th style="width: 40%">Message</th>
+                                        <th style="width: 10%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Dữ liệu log sẽ được chèn vào đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav class="mt-2">
+                            <ul class="pagination justify-content-center" id="pagination"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal thêm/chỉnh sửa bộ lọc -->
+    <div class="modal fade"
+         id="filterModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="filterModalLabel">
+        <div class="modal-dialog modal-dialog-centered filter-modal modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Thêm Bộ Lọc</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nội dung của modal thêm bộ lọc -->
+                    <div class="form-row d-flex">
+                        <div class="form-group col-md-3">
+                            <label>Trường</label>
+                            <select id="field-input" class="form-control" style="width: 100%">
+                                <!-- Các trường có thể lọc -->
+                                <option value="level">level</option>
+                                <option value="message">message</option>
+                                <option value="fields.statusCode">fields.statusCode</option>
+                                <option value="fields.Method">fields.Method</option>
+                                <option value="fields.RequestPath">fields.RequestPath</option>
+                                <!-- Thêm các trường khác nếu cần -->
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Toán tử</label>
+                            <select id="operator-select" class="form-control">
+                                <option value="equals">Bằng</option>
+                                <option value="not_equals">Không bằng</option>
+                                <option value="contains">Chứa</option>
+                                <option value="not_contains">Không chứa</option>
+                                <option value="exists">Có tồn tại</option>
+                                <option value="not_exists">Không tồn tại</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-7" id="value-section">
+                            <label>Giá trị</label>
+                            <textarea id="value-input"
+                                      class="form-control"
+                                      placeholder="Nhập giá trị..."
+                                      rows="1"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="apply-filter-btn" type="button" class="btn btn-success">Áp Dụng</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal log detail -->
+    <div class="modal fade"
+         id="logDetailModal"
+         tabindex="-1"
+         aria-labelledby="logDetailModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="max-height: 85vh !important; overflow-y: auto !important">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logDetailModalLabel">Log Details</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="logDetailContent">Loading...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    <script src="~/sbAdmin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/sbAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/sbAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/sbAdmin/js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@textea/json-viewer@3"></script>
+    <script>
+        // khởi tạo select2 khi modal bật
+        $('#filterModal').on('shown.bs.modal', function () {
+            // Kiểm tra nếu Select2 chưa được khởi tạo
+            if (!$('#field-input').hasClass('select2-hidden-accessible')) {
+                $('#field-input').select2({
+                    tags: true,
+                    placeholder: 'Nhập hoặc chọn',
+                    allowClear: true,
+                    dropdownParent: $('#filterModal'), // Gắn dropdown vào modal
+                });
+            }
+        });
+
+        $(document).ready(function () {
+            //limit pagesize
+            $('#size').on('input', function () {
+                if ($(this).val() > 1000) {
+                    $(this).val(1000);
+                }
+            });
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Format date to "dd-MM-yyyy HH:mm:ss"
+            function formatDateToApi(date) {
+                const options = {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                };
+
+                const formattedDate = new Intl.DateTimeFormat('en-GB', options)
+                    .format(date)
+                    .replace(/,/, '')
+                    .replace(/\//g, '-');
+                return formattedDate;
+            }
+            // Biến để lưu trữ các bộ lọc
+            var filters = [];
+            var editingFilter = null; // Biến để lưu bộ lọc đang chỉnh sửa
+            var displayedTimestamps = new Set();
+            var filterFromDate = '';
+            var filterToDate = '';
+            const index = '@index';
+            $.ajax({
+
+                url: `http://localhost:5280/api/Logs/field-with-type?index=${index}`,
+                type: 'GET',
+                success: function (fields) {
+                    // Populate the Select2 options
+                    var fieldSelect = $('#field-input');
+                    fieldSelect.empty(); // Clear existing options
+
+                    // Loop through the response and add options
+                    fields.forEach(function (field) {
+                        var displayText = `${field.name}-${field.type}`; // Combine name and type
+                        console.log(displayText);
+                        var option = new Option(displayText, displayText, false, false);
+                        fieldSelect.append(option);
+                    });
+
+                    // Re-initialize Select2 to refresh options
+                    fieldSelect.trigger('change');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to load log fields:', error);
+                },
+            });
+
+            function isDuplicateField(selectedField) {
+                return filters.some((filter) => filter.field === selectedField);
+            }
+
+            // Khi nhấn nút "Thêm Bộ Lọc"
+            $('#add-filter-btn').click(function () {
+                openFilterModal();
+            });
+
+            // Mở modal thêm/chỉnh sửa bộ lọc
+            function openFilterModal(filter) {
+                if (filter) {
+                    // Chế độ chỉnh sửa
+                    console.log(filter);
+                    const fieldTmp = filter.field;
+                    const typeTmp = filter.type;
+                    var combineString = `${fieldTmp}-${typeTmp}`;
+                    console.log(combineString);
+                    $('#field-input').val(`${fieldTmp}-${typeTmp}`); // Combine the strings with a "-" in between
+
+                    $('#operator-select').val(filter.operator);
+                    if (filter.operator === 'exists' || filter.operator === 'not_exists') {
+                        $('#value-section').hide();
+                    } else {
+                        $('#value-section').show();
+                        $('#value-input').val(filter.value);
+                    }
+                    editingFilter = filter;
+                } else {
+                    // Chế độ thêm mới
+                    $('#value-section').show();
+                    $('#field-input').val('').trigger('change');
+                    $('#operator-select').val('equals');
+                    $('#value-input').val('');
+                    editingFilter = null;
+                }
+                $('#filterModal').modal('show');
+            }
+
+            // Khi thay đổi toán tử
+            $('#operator-select').change(function () {
+                var operator = $(this).val();
+                if (operator === 'exists' || operator === 'not_exists') {
+                    $('#value-section').hide();
+                } else {
+                    $('#value-section').show();
+                }
+            });
+
+            // Khi nhấn nút "Áp Dụng"
+            $('#apply-filter-btn')
+                .off('click')
+                .on('click', function () {
+                    var field = $('#field-input').val().split('-')[0].trim();
+                    var operator = $('#operator-select').val();
+                    var value = $('#value-input').val().trim();
+                    var type = $('#field-input').val().split('-')[1].trim();
+
+                    if (
+                        field &&
+                        operator &&
+                        (operator === 'exists' || operator === 'not_exists' || value)
+                    ) {
+                        if (editingFilter) {
+                            // Chỉnh sửa bộ lọc
+                            editingFilter.field = field;
+                            editingFilter.operator = operator;
+                            if (operator !== 'exists' && operator !== 'not_exists') {
+                                editingFilter.value = value;
+                            } else {
+                                delete editingFilter.value;
+                            }
+                            updateFilterTag(editingFilter);
+                        } else {
+                            // Thêm bộ lọc mới
+                            var filter = { field: field, operator: operator, type: type };
+                            if (operator !== 'exists' && operator !== 'not_exists') {
+                                filter.value = value;
+                            }
+                            // Check for duplicate field
+                            if (isDuplicateField(field)) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Lỗi',
+                                    text: 'Trường này đã được thêm vào bộ lọc. Vui lòng chọn trường khác!',
+                                });
+                                return;
+                            }
+                            filters.push(filter);
+                            addFilterTag(filter);
+                        }
+                        $('#filterModal').modal('hide');
+                        // Reload dữ liệu với bộ lọc mới
+                        updateFiltersInForm();
+                        displayedTimestamps.clear(); // Xóa danh sách timestamps đã hiển thị
+                        //   table.ajax.reload();
+                    } else {
+                        alert('Vui lòng nhập đầy đủ thông tin bộ lọc.');
+                    }
+                });
+
+            // map operator và class của badge
+            var operatorBadgeClass = {
+                equals: 'badge-success',
+                not_equals: 'badge-danger',
+                contains: 'badge-success',
+                not_contains: 'badge-danger',
+                exists: 'badge-primary',
+                not_exists: 'badge-warning',
+            };
+
+            // Thêm tag bộ lọc vào giao diện
+            function addFilterTag(filter) {
+                var operatorText = {
+                    equals: 'bằng',
+                    not_equals: 'không bằng',
+                    contains: 'chứa',
+                    not_contains: 'không chứa',
+                    exists: 'có tồn tại',
+                    not_exists: 'không tồn tại',
+                };
+                var displayText =
+                    '<span>' +
+                    filter.field +
+                    '</span> ' +
+                    '<span class="font-weight-light">' +
+                    operatorText[filter.operator] +
+                    '</span>';
+                if (filter.value !== undefined) {
+                    displayText += ' ' + filter.value;
+                }
+                var badgeClass = operatorBadgeClass[filter.operator] || 'bg-primary';
+                var fullText =
+                    filter.field +
+                    ' ' +
+                    operatorText[filter.operator] +
+                    (filter.value !== undefined ? ' ' + filter.value : '');
+
+                // Sử dụng inline-flex để sắp xếp văn bản và icon
+                var $tag = $(
+                    '<span class="badge ' +
+                    badgeClass +
+                    ' filter-tag m-1" title="' +
+                    fullText +
+                    '" data-toggle="tooltip">' +
+                    '<span class="filter-text">' +
+                    displayText +
+                    '</span>' +
+                    ' <i class="fas fa-times remove-filter" style="cursor:pointer;"></i>' +
+                    '</span>',
+                );
+                $tag.data('filter', filter); // Lưu trữ bộ lọc trong tag
+
+                // Sự kiện xóa tag
+                $tag.find('.remove-filter').click(function (e) {
+                    e.stopPropagation();
+                    var index = filters.indexOf(filter);
+                    if (index > -1) {
+                        // Dispose tooltip trước khi xóa tag
+                        $tag.tooltip('dispose');
+                        filters.splice(index, 1);
+                        $tag.remove();
+                        // Reload dữ liệu khi xóa bộ lọc
+                        updateFiltersInForm();
+                        displayedTimestamps.clear(); // Xóa danh sách timestamps đã hiển thị
+                        table.ajax.reload();
+                    }
+                });
+
+                // Khi click vào tag để chỉnh sửa
+                $tag.click(function () {
+                    openFilterModal(filter);
+                });
+
+                $('#active-filters').append($tag);
+
+                // Kích hoạt tooltip cho tag mới
+                $tag.tooltip();
+            }
+
+            // Cập nhật tag bộ lọc khi chỉnh sửa
+            function updateFilterTag(filter) {
+                $('#active-filters')
+                    .find('.filter-tag')
+                    .each(function () {
+                        var $tag = $(this);
+                        if ($tag.data('filter') === filter) {
+                            var operatorText = {
+                                equals: 'bằng',
+                                not_equals: 'không bằng',
+                                contains: 'chứa',
+                                not_contains: 'không chứa',
+                                exists: 'có tồn tại',
+                                not_exists: 'không tồn tại',
+                            };
+                            var displayText =
+                                '<span>' +
+                                filter.field +
+                                '</span> ' +
+                                '<span class="font-weight-light">' +
+                                operatorText[filter.operator] +
+                                '</span>';
+                            if (filter.value !== undefined) {
+                                displayText += ' ' + filter.value;
+                            }
+                            var badgeClass = operatorBadgeClass[filter.operator] || 'bg-primary';
+                            var fullText =
+                                filter.field +
+                                ' ' +
+                                operatorText[filter.operator] +
+                                (filter.value !== undefined ? ' ' + filter.value : '');
+
+                            // Cập nhật class, title và nội dung HTML với cấu trúc inline-flex
+                            $tag.tooltip('dispose');
+                            $tag.attr('class', 'badge ' + badgeClass + ' filter-tag m-1'); // Cập nhật class của badge
+                            $tag.attr('title', fullText); // Cập nhật title cho tooltip
+                            $tag.attr('data-toggle', 'tooltip'); // Thêm thuộc tính tooltip
+                            $tag.html(
+                                '<span class="filter-text">' +
+                                displayText +
+                                '</span>' +
+                                ' <i class="fas fa-times remove-filter" style="cursor:pointer;"></i>',
+                            );
+
+                            // Re-bind lại sự kiện khi xóa tag
+                            $tag.find('.remove-filter').click(function (e) {
+                                e.stopPropagation();
+                                var index = filters.indexOf(filter);
+                                if (index > -1) {
+                                    // Dispose tooltip trước khi xóa tag
+                                    $tag.tooltip('dispose');
+                                    filters.splice(index, 1);
+                                    $tag.remove();
+                                    // Reload dữ liệu khi xóa bộ lọc
+                                    updateFiltersInForm();
+                                    displayedTimestamps.clear(); // Xóa danh sách timestamps đã hiển thị
+                                    table.ajax.reload();
+                                }
+                            });
+
+                            // Re-bind sự kiện chỉnh sửa khi click vào tag
+                            $tag.off('click').click(function () {
+                                openFilterModal(filter);
+                            });
+
+                            // Kích hoạt lại tooltip sau khi cập nhật nội dung
+                            $tag.tooltip('dispose').tooltip();
+                        }
+                    });
+                // Cập nhật filters trong form
+                updateFiltersInForm();
+            }
+
+            // Cập nhật các filters vào form để gửi lên backend
+            function updateFiltersInForm() {
+                $('#filtersContainer').empty();
+                for (var i = 0; i < filters.length; i++) {
+                    var filter = filters[i];
+                    var fieldInput = $('<input>')
+                        .attr('type', 'hidden')
+                        .attr('name', 'Filters[' + i + '].Field')
+                        .val(filter.field);
+                    var operatorInput = $('<input>')
+                        .attr('type', 'hidden')
+                        .attr('name', 'Filters[' + i + '].Operator')
+                        .val(filter.operator);
+                    $('#filtersContainer').append(fieldInput, operatorInput);
+                    if (filter.value !== undefined) {
+                        var valueInput = $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'Filters[' + i + '].Value')
+                            .val(filter.value);
+                        $('#filtersContainer').append(valueInput);
+                    }
+                }
+            }
+
+            // Khi modal đóng, reset biến editingFilter
+            $('#filterModal').on('hidden.bs.modal', function () {
+                editingFilter = null;
+            });
+
+            // Disable toDate until fromDate is selected
+            $('#toDate').prop('disabled', true);
+
+            // When fromDate is selected, enable toDate and ensure it is greater than fromDate
+            $('#fromDate').on('change', function () {
+                $('#relativeFilter').prop('disabled', true);
+                const fromDate = new Date($('#fromDate').val());
+                const toDate = $('#toDate').val();
+
+                if (fromDate) {
+                    $('#toDate').prop('disabled', false);
+                    filterFromDate = formatDateToApi(fromDate);
+                    // Set the min date for toDate
+                    $('#toDate').attr('min', $('#fromDate').val());
+                } else {
+                    $('#toDate').prop('disabled', true);
+                }
+            });
+
+            $('#toDate').on('change', function () {
+                const toDate = new Date($('#toDate').val());
+                filterToDate = formatDateToApi(toDate);
+            });
+
+            // Function to handle relative filter change
+            $('#relativeFilter').change(function () {
+                $('#fromDate').prop('disabled', true);
+                const selectedOption = $(this).val();
+                const now = new Date();
+                const formattedToDate = formatDateToApi(now);
+                let fromDate;
+
+                switch (selectedOption) {
+                    case 'last15Minutes':
+                        fromDate = new Date(now.getTime() - 15 * 60000);
+                        break;
+                    case 'last30Minutes':
+                        fromDate = new Date(now.getTime() - 30 * 60000);
+                        break;
+                    case 'last45Minutes':
+                        fromDate = new Date(now.getTime() - 45 * 60000);
+                        break;
+                    case 'lastHour':
+                        fromDate = new Date(now.getTime() - 60 * 60000);
+                        break;
+                    case 'last6Hour':
+                        fromDate = new Date(now.getTime() - 60 * 6 * 60000);
+                        break;
+                    case 'last12Hour':
+                        fromDate = new Date(now.getTime() - 60 * 12 * 60000);
+                        break;
+                    case 'lastDay':
+                        fromDate = new Date(now.getTime() - 24 * 60 * 60000);
+                        break;
+                    case 'lastWeek':
+                        fromDate = new Date(now.getTime() - 24 * 60 * 7 * 60000);
+                        break;
+                    case 'lastMonth':
+                        fromDate = new Date(now.setMonth(now.getMonth() - 1));
+                        break;
+                    default:
+                        return;
+                }
+
+                const formattedFromDate = formatDateToApi(fromDate);
+
+                filterFromDate = formattedFromDate;
+                filterToDate = formattedToDate;
+
+                console.log(formattedFromDate);
+                $('#fromDate').val(formattedFromDate); // Update the fromDate field with calculated value
+
+                $('#toDate').val(formattedToDate);
+            });
+
+            // Initialize variables
+            let currentPage = 1;
+            let pageSize = $('#size').val(); // Number of rows per page
+            let totalPages = 0;
+
+            // Search button click handler
+            $('#searchButton').on('click', function () {
+                pageSize = $('#size').val();
+                currentPage = 1; // Reset to first page
+                loadLogs();
+            });
+
+            // Load logs function
+            function loadLogs() {
+                const startDate = $('#startDate').val();
+                const endDate = $('#endDate').val();
+                const searchTerm = $('#searchTerm').val() || '';
+                const sortByValue = $('#sortBy').val(); // Get the value from the select
+                const sortBy = sortByValue === 'true'; // Convert the string value to a boolean
+
+                console.log(filters);
+                console.log(filterFromDate);
+                console.log(filterToDate);
+                console.log(searchTerm);
+                // Show loading spinner
+                $('#loadingSpinner').show();
+
+                $.ajax({
+                    url: 'http://localhost:5280/api/Logs/search-log',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({
+                        StartDate: filterFromDate,
+                        EndDate: filterToDate,
+                        PageIndex: currentPage - 1,
+                        PageSize: pageSize,
+                        Index: '@index',
+                        SearchTerm: searchTerm,
+                        Filters: filters,
+                        IsLatest: sortBy,
+                    }),
+                    success: function (response) {
+                        console.log(response.totalPages);
+                        totalPages = response.totalPages; // Total number of records
+                        renderTable(response.items);
+                        renderPagination();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching logs:', error);
+                    },
+                    complete: function () {
+                        // Hide loading spinner
+                        $('#loadingSpinner').hide();
+                    },
+                });
+            }
+
+            function escapeQuotes(str) {
+                return str.replace(/"/g, '&quot;');
+            }
+
+            // Render table rows
+            function renderTable(logs) {
+                const $tbody = $('#logsTable tbody');
+                $tbody.empty(); // Clear existing rows
+
+                if (logs.length === 0) {
+                    $tbody.append('<tr><td colspan="6" class="text-center">No logs found</td></tr>');
+                    return;
+                }
+
+                logs.forEach((log) => {
+                    const timestamp = new Date(log['@@timestamp']).toLocaleString();
+                    const level = log.level || '';
+
+                    const message = log.message || '';
+                    const correlationId = log.fields?.CorrelationId || '';
+                    const logId = log.id || '';
+
+                    // Limit message length
+                    const truncatedMessage =
+                        message.length > 70 ? `${message.substring(0, 70)}...` : message;
+
+                    $tbody.append(`
+                        <tr>
+                            <td>${timestamp}</td>
+                            <td>${level}</td>
+
+                            <td>${correlationId}</td>
+
+                            <td title="${escapeQuotes(
+                        message,
+                    )}" data-bs-toggle="tooltip" data-bs-placement="top">${truncatedMessage}</td>
+
+                            <td><button class="btn btn-primary btn-sm btn-detail" data-log-id="${logId}" data-timestamp="${timestamp}">Detail</button></td>
+                        </tr>
+                    `);
+                });
+            }
+
+            // Render pagination controls
+            function renderPagination() {
+                const $pagination = $('#pagination');
+                $pagination.empty();
+
+                console.log(pageSize);
+                console.log(totalPages);
+
+                if (totalPages <= 1) return;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const activeClass = i === currentPage ? 'active' : '';
+
+                    // Show first two pages, last two pages, and a few pages around the current page
+                    if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                        $pagination.append(`
+                    <li class="page-item ${activeClass}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `);
+                    } else if (
+                        (i === currentPage - 3 && i > 2) ||
+                        (i === currentPage + 3 && i < totalPages - 1)
+                    ) {
+                        // Add ellipsis
+                        $pagination.append(`
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                `);
+                    }
+                }
+
+                // Add click handler for pagination links
+                $pagination.find('a').on('click', function (e) {
+                    e.preventDefault();
+                    currentPage = parseInt($(this).data('page'));
+                    loadLogs();
+                });
+            }
+            // Handle Detail button click
+            $(document).on('click', '.btn-detail', function () {
+                const logId = $(this).data('log-id');
+                const timestamp = $(this).data('timestamp');
+                const detailIndex = "@sanitizedIndex";
+                // Parse the timestamp to a Date object
+                const date = new Date(timestamp);
+
+                // Extract the year and month
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure the month is two digits
+
+                // Format the result as 'YYYY-MM'
+                const dateFormated = `${year}-${month}`;
+
+                const apiUrl = `http://localhost:5280/api/Logs?id=${logId}&index=${detailIndex}${dateFormated}`;
+
+                // Show loading indicator
+                $('#logDetailContent').html('Loading...');
+
+                // Fetch log details
+                fetch(apiUrl)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Parse and render log details
+                        const logDetails = `
+                <p><strong>ID:</strong> ${data.id}</p>
+                <p><strong>Timestamp:</strong> ${new Date(data['@@timestamp']).toLocaleString()}</p>
+                <p><strong>Level:</strong> ${data.level}</p>
+                <p><strong>Message:</strong> ${data.message}</p>
+                <hr>
+                <h5>Fields:</h5>
+                <ul>
+                  ${Object.entries(data.fields)
+                                .map(
+                                    ([key, value]) =>
+                                        `<li><strong>${key}:</strong> ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value
+                                        }</li>`,
+                                )
+                                .join('')}
+                </ul>
+              `;
+
+                        // Update modal content
+                        $('#logDetailContent').html(logDetails);
+
+                        // Show modal
+                        $('#logDetailModal').modal('show');
+                    })
+                    .catch((error) => {
+                        $('#logDetailContent').html('<p class="text-danger">Failed to load log details.</p>');
+                        console.error('Error fetching log details:', error);
+                    });
+            });
+
+            // Reset button click
+            $('#resetButton').click(function () {
+                $('#fromDate').val('');
+                $('#toDate').val('');
+                $('#toDate').prop('disabled', true);
+                $('#relativeFilter').prop('disabled', false);
+                $('#searchTerm').val('');
+                $('#number').val(100);
+                $('#sortBy').val('false');
+                $('#relativeFilter').val('');
+                filters = [];
+                // Remove all filter tags from the UI
+                $('#active-filters').empty();
+
+                // Clear any additional state variables if needed
+                displayedTimestamps.clear(); // Ensure to clear timestamp cache
+            });
+        });
+    </script>
+}
+
+
+
+
