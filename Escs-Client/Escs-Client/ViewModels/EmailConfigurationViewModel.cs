@@ -6,8 +6,13 @@ namespace Escs_Client.ViewModels
     {
         [Required(ErrorMessage = "SmtpEmail is required")]
         public string SmtpEmail { get; set; } = default!;
+
         [Required(ErrorMessage = "SmtpPassword is required")]
         public string SmtpPassword { get; set; } = default!;
+
+        [Required(ErrorMessage = "SmtpServer is required")]
+        public string SmtpServer { get; set; } = default!;
+
         [Required(ErrorMessage = "SmtpPort is required")]
         public int SmtpPort { get; set; }
         public long UserId { get; set; }

@@ -75,6 +75,35 @@ namespace Escs_Client.Services
             }
         }
 
+        public async Task<BaseResult> CreateUserApiKeyAllowedEndpointTransaction(CreateUserApiKeyAllowedEndpointTransactionRequest createUserApiKeyRequest)
+        {
+            try
+            {
+                // Call the Login API to get the accessToken and refreshToken
+                var httpCallOptions = HttpCallOptions<CreateUserApiKeyAllowedEndpointTransactionRequest>.UnAuthenticated(
+                    isSerialized: true,
+                    isRetry: false,
+                    body: createUserApiKeyRequest,
+                    baseUrl: "http://localhost:5212/api/Users/api-key-allowed-endpoint",
+                    queryStringElements: new List<string>()
+                );
+
+                // Use LoginResponse as the data type
+                var createUserApiKeyResult = await _httpCaller.PostAsync<CreateUserApiKeyAllowedEndpointTransactionRequest, long>(httpCallOptions);
+                if (createUserApiKeyResult.Succeeded)
+                {
+                    return BaseResult.Success();
+                }
+                return BaseResult.Failure(createUserApiKeyResult.ExceptionError.StatusCode.ToString(), createUserApiKeyResult.ExceptionError.Message);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                throw;
+            }
+        }
+
         public async Task<BaseResult<IEnumerable<UserApiKeyDetailResponse>>> GetKeyDetail(long userId, long serviceId)
         {
             try

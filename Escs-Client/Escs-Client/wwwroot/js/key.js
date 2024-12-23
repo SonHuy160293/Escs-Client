@@ -1,21 +1,6 @@
 ﻿
 // Handle form submission (for demonstration purposes)
-document.getElementById('createTokenForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const tokenName = document.getElementById('tokenName').value;
-    const allowances = Array.from(
-        document.querySelectorAll('#createTokenForm .form-check-input:checked'),
-    ).map((checkbox) => checkbox.value);
 
-    console.log('Token Name:', tokenName);
-    console.log('Allowances:', allowances);
-
-    alert('Token created successfully!');
-    // Reset the form and close the modal
-    this.reset();
-    const modal = bootstrap.Modal.getInstance(document.getElementById('createTokenModal'));
-    modal.hide();
-});
 
 
 function openDeleteModal(tokenName) {

@@ -139,11 +139,9 @@
                                 <thead class="sticky-header">
                                     <tr>
                                         <th>Time Stamp</th>
-                                        <th>Level</th>
                                         <th>Method</th>
                                         <th>Path</th>
                                         <th>CorrelationId</th>
-
                                         <th>Message</th>
                                         <th></th>
                                     </tr>
@@ -806,7 +804,7 @@
 
                 logs.forEach((log) => {
                     const timestamp = new Date(log['@@timestamp']).toLocaleString();
-                    const level = log.level || '';
+                    
                     const method = log.fields?.Method || '';
                     const requestPath = log.fields?.RequestPath || '';
                     const statusCode = log.fields?.StatusCode || '';
@@ -828,7 +826,7 @@
                     $tbody.append(`
                         <tr>
                             <td>${timestamp}</td>
-                            <td>${level}</td>
+                            
                             <td>${method}</td>
                             <td>${requestPath}</td>
                             <td>${correlationId}</td>

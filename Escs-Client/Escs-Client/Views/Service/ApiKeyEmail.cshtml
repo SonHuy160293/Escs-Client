@@ -158,10 +158,9 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="tokenForm" asp-action="ApiKeyEmail" method="post">
+                <form id="tokenForm" >
                     @* CSRF Token for security *@
                     @Html.AntiForgeryToken()
-
 
                     <div class="mb-3">
                         <label class="form-label">Access Permissions *</label>
@@ -189,12 +188,14 @@
                             <p>No service endpoints available.</p>
                         }
                     </div>
-                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                    <button id="submitKey" class="btn btn-success w-100">Submit</button>
+                    <div id="emailConfigError" class="d-none alert alert-danger mt-2"></div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -243,6 +244,43 @@
                     // Update hidden input and message in modal
                     modalKeyIdInput.value = keyId;
                     modalDeleteMessage.querySelector('strong').textContent = keyName;
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#submitKey').click(function (event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                var formData = $('#tokenForm').serialize();
+
+                $.ajax({
+                    url: '@Url.Action("EmailConfiguration", "Service")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            // Close the modal if successful
+                            $('#createTokenModal').modal('hide');
+
+                            // Reload the page to reflect changes
+                            location.reload();
+                        } else {
+                            // Display error message without closing the modal
+                            $('#emailConfigError')
+                                .removeClass('d-none')
+                                .text(response.message);
+                        }
+                    },
+                    error: function () {
+                        // Display a generic error message without closing the modal
+                        $('#emailConfigError')
+                            .removeClass('d-none')
+                            .text('An unexpected error occurred.');
+                    }
                 });
             });
         });

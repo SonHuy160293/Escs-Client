@@ -1,0 +1,143 @@
+﻿#content-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* Tối ưu bảng hiển thị nhiều nội dung hơn */
+#logsTable tbody td {
+    font-size: 15px;
+    padding: 4px;
+    line-height: 1.2;
+}
+
+/* giới hạn 1 dòng cho logs table*/
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limit to 1 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Custom màu text status code cho logs table*/
+
+.text-custom-success {
+    color: #388e3c;
+}
+
+.text-custom-warning {
+    color: #fbc02d;
+}
+
+.text-custom-danger {
+    color: #d32f2f;
+}
+
+.new-log {
+    animation: fadeNewLog 1s forwards;
+}
+
+/* CSS cho hiệu ứng mờ dần của background-color */
+#logsTable tbody tr {
+    transition: background-color 1s;
+}
+
+/* Giới hạn độ dài của tag và thêm dấu ... khi tràn */
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    max-width: 200px; /* Giới hạn chiều rộng tối đa, bạn có thể điều chỉnh */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 5px; /* Thêm khoảng trống cho icon xóa */
+    box-sizing: border-box; /* Đảm bảo padding được tính trong chiều rộng */
+}
+
+/* Giới hạn độ dài của phần văn bản và thêm dấu ... */
+.filter-text {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Đảm bảo icon xóa không bị tràn */
+.filter-tag .remove-filter {
+    flex: 0 0 auto;
+    margin-left: 5px; /* Khoảng cách giữa văn bản và icon xóa */
+    cursor: pointer;
+    min-width: 16px; /* Đảm bảo icon luôn hiển thị */
+}
+/* General Select2 container styling */
+.select2-container {
+    width: 35% !important; /* Ensure it matches the width of the parent element */
+    background-color: #fff;
+}
+
+/* Style for the dropdown inside the modal */
+.select2-dropdown {
+    z-index: 1050; /* Ensures dropdown is above the modal */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    max-height: 200px; /* Set max height for the dropdown */
+    overflow-y: auto; /* Enable scrolling for long lists */
+    min-width: 100%; /* Ensure it doesn't shrink below the container */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Style for dropdown items */
+.select2-results__options {
+    max-height: 200px; /* Restrict the height of the dropdown list */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Style for dropdown items */
+.select2-results__option {
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+}
+
+/* Highlighted item */
+.select2-results__option--highlighted {
+    background-color: #e9ecef !important; /* Light gray background for highlighting */
+    color: #000; /* Black text for contrast */
+}
+
+/* Placeholder styling */
+.select2-selection__placeholder {
+    color: #6c757d; /* Light gray text for placeholder */
+    font-style: italic;
+}
+
+/* Selected option styling */
+.select2-selection__rendered {
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #000; /* Black text */
+    background-color: #fff; /* White background for the selected box */
+}
+
+/* Adjust the border of the select box */
+.select2-selection {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* Ensure the header background is visible */
+    z-index: 1; /* Make sure it stays above other content when scrolling */
+}

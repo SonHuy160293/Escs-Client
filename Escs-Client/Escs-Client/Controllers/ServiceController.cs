@@ -62,52 +62,40 @@ namespace Escs_Client.Controllers
 
         public async Task<IActionResult> EmailConfiguration(EmailConfigurationViewModel emailConfigurationViewModel, List<long> EndpointsId)
         {
-            if (!ModelState.IsValid)
-                return View(emailConfigurationViewModel);
 
-            var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            emailConfigurationViewModel.UserId = Int32.Parse(userId);
-            emailConfigurationViewModel.ServiceId = 1;
+            var userId = Int32.Parse(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
 
-            var createEmailConfigResult = await _emailService.CreateEmailConfiguration(emailConfigurationViewModel);
-            if (createEmailConfigResult.Succeeded)
+
+            if (!EndpointsId.Any() || EndpointsId is null && emailConfigurationViewModel is not null)
             {
-                if (EndpointsId.Any())
-                {
-                    var createUserApiKeyRequest = new CreateUserApiKeyRequest
-                    {
-                        ServiceId = 1,
-                        UserId = Int32.Parse(userId)
-                    };
+                emailConfigurationViewModel.UserId = userId;
+                emailConfigurationViewModel.ServiceId = 1;
 
-                    var createUserApiKeyResult = await _keyService.CreateUserApiKey(createUserApiKeyRequest);
+                var createEmailConfigResult = await _emailService.CreateEmailConfiguration(emailConfigurationViewModel);
 
-                    if (createUserApiKeyResult.Succeeded)
-                    {
-                        var createKeyAllowedEndpoint = new CreateKeyAllowedEndpointRequest
-                        {
-                            EndpointId = EndpointsId,
-                            UserApiKeyId = createUserApiKeyResult.Data
-                        };
-
-                        var createKeyAllowedEndpointResult = await _keyService.CreateKeyAllowedEndpoint(createKeyAllowedEndpoint);
-
-                        if (createKeyAllowedEndpointResult.Succeeded)
-                        {
-                            return RedirectToAction("Email");
-                        }
-                    }
-
-                    return RedirectToAction("Privacy", "Home");
-                }
-                else
+                if (createEmailConfigResult.Succeeded)
                 {
                     return Json(new { success = true });
                 }
+                return Json(new { success = false, message = createEmailConfigResult.ErrorMessage });
             }
 
-            return Json(new { success = false, message = createEmailConfigResult.ErrorMessage });
+
+            var createUserApiKeyAllowedEndpointTransactionRequest = new CreateUserApiKeyAllowedEndpointTransactionRequest
+            {
+                EndpointId = EndpointsId,
+                ServiceId = 1,
+                UserId = userId
+            };
+
+            var createUserApiKeyAllowedEndpointTransactionResponse = await _keyService.CreateUserApiKeyAllowedEndpointTransaction(createUserApiKeyAllowedEndpointTransactionRequest);
+            if (createUserApiKeyAllowedEndpointTransactionResponse.Succeeded)
+            {
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, message = createUserApiKeyAllowedEndpointTransactionResponse.ErrorMessage });
 
 
         }
@@ -177,47 +165,47 @@ namespace Escs_Client.Controllers
         }
 
 
-        [Authorize]
-        [HttpPost]
+        //[Authorize]
+        //[HttpPost]
 
-        public async Task<IActionResult> ApiKeyEmail(List<long> EndpointsId)
-        {
+        //public async Task<IActionResult> ApiKeyEmail(List<long> EndpointsId)
+        //{
 
 
-            var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        //    var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            var createUserApiKeyRequest = new CreateUserApiKeyRequest
-            {
-                ServiceId = 1,
-                UserId = Int32.Parse(userId)
-            };
+        //    var createUserApiKeyRequest = new CreateUserApiKeyRequest
+        //    {
+        //        ServiceId = 1,
+        //        UserId = Int32.Parse(userId)
+        //    };
 
-            var createUserApiKeyResult = await _keyService.CreateUserApiKey(createUserApiKeyRequest);
+        //    var createUserApiKeyResult = await _keyService.CreateUserApiKey(createUserApiKeyRequest);
 
-            if (createUserApiKeyResult.Succeeded)
-            {
-                var createKeyAllowedEndpoint = new CreateKeyAllowedEndpointRequest
-                {
-                    EndpointId = EndpointsId,
-                    UserApiKeyId = createUserApiKeyResult.Data
-                };
+        //    if (createUserApiKeyResult.Succeeded)
+        //    {
+        //        var createKeyAllowedEndpoint = new CreateKeyAllowedEndpointRequest
+        //        {
+        //            EndpointId = EndpointsId,
+        //            UserApiKeyId = createUserApiKeyResult.Data
+        //        };
 
-                var createKeyAllowedEndpointResult = await _keyService.CreateKeyAllowedEndpoint(createKeyAllowedEndpoint);
+        //        var createKeyAllowedEndpointResult = await _keyService.CreateKeyAllowedEndpoint(createKeyAllowedEndpoint);
 
-                if (createKeyAllowedEndpointResult.Succeeded)
-                {
-                    return RedirectToAction("EmailConfiguration");
-                }
-                return RedirectToAction("Privacy", "Home");
-            }
-            else
-            {
-                // Handle login failure
-                TempData["ErrorMessage"] = createUserApiKeyResult.ErrorMessage;
-                return View(EndpointsId);
-            }
+        //        if (createKeyAllowedEndpointResult.Succeeded)
+        //        {
+        //            return RedirectToAction("EmailConfiguration");
+        //        }
+        //        return RedirectToAction("EmailConfiguration");
+        //    }
+        //    else
+        //    {
+        //        // Handle login failure
+        //        TempData["ErrorMessage"] = createUserApiKeyResult.ErrorMessage;
+        //        return View(EndpointsId);
+        //    }
 
-        }
+        //}
 
         [Authorize]
         [HttpGet]

@@ -71,6 +71,7 @@
     {
         public long Id { get; set; }
         public string SmtpEmail { get; set; } = default!;
+        public string SmtpServer { get; set; } = default!;
         public int SmtpPort { get; set; }
         public bool IsActive { get; set; }
         public long UserId { get; set; }
@@ -83,8 +84,10 @@
         public long Id { get; set; }
         public string SmtpEmail { get; set; } = default!;
         public string SmtpPassword { get; set; } = default!;
+        public string SmtpServer { get; set; } = default!;
         public int SmtpPort { get; set; }
         public bool IsActive { get; set; }
+        public bool IsEnableSsl { get; set; }
         public long UserId { get; set; }
         public long ServiceId { get; set; }
 

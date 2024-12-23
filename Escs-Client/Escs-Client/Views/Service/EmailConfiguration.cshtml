@@ -69,8 +69,10 @@
                 <thead>
                     <tr>
                         <th scope="col">SMTP Email</th>
+                        <th scope="col">SMTP Server</th>
                         <th scope="col">SMTP Port</th>
                         <th scope="col">SMTP Password</th>
+                        <th scope="col">Ssl</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -82,9 +84,14 @@
                         {
                             <tr>
                                 <td>@congfig.SmtpEmail</td>
+                                <td>@congfig.SmtpServer</td>
                                 <td>@congfig.SmtpPort</td>
                                 <td>@congfig.SmtpPassword</td>
-
+                                <td>
+                                    <span class="badge @(congfig.IsEnableSsl ? "bg-success" : "bg-secondary")">
+                                        @(congfig.IsEnableSsl ? "Active" : "Inactive")
+                                    </span>
+                                </td>
                                 <td>
                                     <span class="badge @(congfig.IsActive ? "bg-success" : "bg-secondary")">
                                         @(congfig.IsActive ? "Active" : "Inactive")
@@ -133,6 +140,11 @@
                         <label for="smtpEmail" class="form-label">Smtp Email</label>
                         <input type="email" class="form-control" id="smtpEmail" name="SmtpEmail" required>
                         <div class="invalid-feedback">SmtpEmail is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="smtpServer" class="form-label">Smtp Server</label>
+                        <input type="text" class="form-control" id="smtpServer" name="SmtpServer" required>
+                        <div class="invalid-feedback">SmtpServer is required</div>
                     </div>
                     <div class="mb-3">
                         <label for="smtpPassword" class="form-label">Smtp Password</label>

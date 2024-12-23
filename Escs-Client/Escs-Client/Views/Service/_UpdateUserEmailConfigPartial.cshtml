@@ -7,6 +7,10 @@
         <input type="text" class="form-control" id="smtpEmail" name="SmtpEmail" value="@Model.SmtpEmail" required>
     </div>
     <div class="mb-3">
+        <label for="smtpServer" class="form-label">Smtp Email</label>
+        <input type="text" class="form-control" id="smtpServer" name="SmtpServer" value="@Model.SmtpServer" required>
+    </div>
+    <div class="mb-3">
         <label for="smtpPassword" class="form-label">Smtp Password</label>
         <input type="text" class="form-control" id="smtpPassword" name="SmtpPassword" value="@Model.SmtpPassword" required>
     </div>
@@ -19,6 +23,14 @@
         <select class="form-select" id="isActive" name="IsActive">
             <option value="true" selected="@(Model.IsActive ? "selected" : null)">Yes</option>
             <option value="false" selected="@(!Model.IsActive ? "selected" : null)">No</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="isEnableSsl" class="form-label">Ssl</label>
+        <select class="form-select" id="isEnableSsl" name="IsEnableSsl">
+            <option value="true" selected="@(Model.IsEnableSsl ? "selected" : null)">Yes</option>
+            <option value="false" selected="@(!Model.IsEnableSsl ? "selected" : null)">No</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
