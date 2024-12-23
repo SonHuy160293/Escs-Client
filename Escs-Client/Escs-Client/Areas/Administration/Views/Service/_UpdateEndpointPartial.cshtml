@@ -1,4 +1,7 @@
-﻿@model Escs_Client.ViewModels.ServiceEndpointResponse
+﻿@{
+    var endpoints = ViewBag.ServiceEndpoints;
+}
+@model Escs_Client.ViewModels.ServiceEndpointResponse
 
 <form asp-action="UpdateEndpoint" method="post">
     <input type="hidden" name="Id" value="@Model.Id" />

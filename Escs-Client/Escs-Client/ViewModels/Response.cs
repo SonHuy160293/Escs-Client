@@ -37,10 +37,12 @@
 
     public class KeyAllowedEndpointDetailDto
     {
+        public long Id { get; set; }
         public bool IsActive { get; set; } = default;
         public string Method { get; set; } = default;
         public string Url { get; set; } = default;
         public string Description { get; set; } = default;
+        public long EndpointId { get; set; }
     }
 
     public class ItemPagingResponse<T>

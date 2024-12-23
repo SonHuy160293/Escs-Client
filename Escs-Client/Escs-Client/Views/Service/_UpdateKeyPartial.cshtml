@@ -1,0 +1,80 @@
+﻿@model Escs_Client.ViewModels.UserApiKeyDetailResponse
+
+<form asp-action="UpdateUserEmailConfig" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="mb-3">
+        <label for="key" class="form-label">Key</label>
+        <input type="text" class="form-control" id="key" name="Key" value="@Model.Key" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="createdOn" class="form-label">Created On</label>
+        <input type="text" class="form-control" id="createdOn" name="CreatedOn" value="@Model.CreatedOn.ToString(" dd/MM/yyyy")" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="isActive" class="form-label">Status</label>
+        <span class="badge @(Model.IsActive ? "bg-success" : "bg-secondary")">
+            @(Model.IsActive ? "Active" : "Inactive")
+        </span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Access Permissions *</label> 
+
+        @if (Model.AllowedEndpoints is not null)
+        {
+            @foreach (var endpoint in Model.AllowedEndpoints)
+            {
+                if (endpoint.IsActive)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="allow_@endpoint.EndpointId"
+                               name="EndpointsId"
+                               value="@endpoint.EndpointId"
+                               checked/>
+
+                        <label class="form-check-label" for="allow_@endpoint.EndpointId">
+                            @endpoint.Url - @endpoint.Description
+                        </label>
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <p>No service endpoints available.</p>
+        }
+
+        @if (ViewBag.EndpointsNotChecked is not null)
+        {
+            @foreach (var endpoint in ViewBag.EndpointsNotChecked)
+            {
+                if (endpoint.IsActive)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="allow_@endpoint.Id"
+                               name="EndpointsId"
+                               value="@endpoint.Id"
+                         />
+
+                        <label class="form-check-label" for="allow_@endpoint.Id">
+                            @endpoint.Url - @endpoint.Description
+                        </label>
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <p>No service endpoints available.</p>
+        }
+    </div>
+
+    
+    
+    
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+

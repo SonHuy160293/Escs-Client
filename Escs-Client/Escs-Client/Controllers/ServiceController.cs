@@ -131,6 +131,39 @@ namespace Escs_Client.Controllers
             return PartialView("_UpdateUserEmailConfigPartial", endpoint.Data);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetKeyUpdateModal(long id)
+        {
+            var serviceEndpointResult = await _emailService.GetEndpointOfEmailService();
+
+            // Fetch the endpoint data from the service or database
+            var key = await _keyService.GetKeyDetailById(id);
+
+            var endpointIds = key.Data.AllowedEndpoints.Select(a => a.EndpointId).ToList();
+
+            if (key is null)
+            {
+                return NotFound("Endpoint not found.");
+            }
+
+            var endpointsNotChecked = serviceEndpointResult.Data.Where(e => !endpointIds.Contains(e.Id)).ToList();
+
+
+
+
+
+            if (serviceEndpointResult.Succeeded)
+            {
+                ViewBag.EndpointsNotChecked = endpointsNotChecked;
+            }
+            else
+            {
+                ViewBag.EndpointsNotChecked = Enumerable.Empty<ServiceEndpointResponse>();
+                ViewBag.ErrorMessage = "Failed to fetch service endpoints.";
+            }
+            // Return the partial view with the model
+            return PartialView("_UpdateKeyPartial", key.Data);
+        }
 
         [Authorize]
         [HttpGet]
@@ -258,11 +291,11 @@ namespace Escs_Client.Controllers
             if (updateUserApiKeyResult.Succeeded)
             {
                 TempData["SuccessMessage"] = "API key deleted successfully.";
-                return RedirectToAction("EmailConfiguration"); // Replace with your desired action
+                return RedirectToAction("ApiKeyEmail"); // Replace with your desired action
             }
 
             TempData["ErrorMessage"] = "Failed to delete the API key.";
-            return RedirectToAction("EmailConfiguration");
+            return RedirectToAction("ApiKeyEmail");
         }
 
     }

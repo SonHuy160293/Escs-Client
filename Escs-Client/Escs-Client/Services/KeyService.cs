@@ -132,6 +132,34 @@ namespace Escs_Client.Services
             }
         }
 
+        public async Task<BaseResult<UserApiKeyDetailResponse>> GetKeyDetailById(long id)
+        {
+            try
+            {
+                // Call the Login API to get the accessToken and refreshToken
+                var httpCallOptions = HttpCallOptions.UnAuthenticated(
+                    isSerialized: true,
+                    isRetry: false,
+                    baseUrl: $"http://localhost:5212/api/Users/api-key/{id}/detail",
+                    queryStringElements: new List<string>()
+                );
+
+                // Use LoginResponse as the data type
+                var endpointResult = await _httpCaller.GetAsync<UserApiKeyDetailResponse>(httpCallOptions);
+                if (endpointResult.Succeeded)
+                {
+                    return BaseResult<UserApiKeyDetailResponse>.Success(endpointResult.Data);
+                }
+                return BaseResult<UserApiKeyDetailResponse>.Failure(endpointResult.ExceptionError.StatusCode.ToString(), endpointResult.ExceptionError.Message);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get key detail occured exception");
+                throw;
+            }
+        }
+
         public async Task<BaseResult<IEnumerable<ServiceEndpointRegisterByUserResponse>>> GetServiceEndpointRegisterByUser(long userId)
         {
             try

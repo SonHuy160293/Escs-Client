@@ -114,6 +114,12 @@
 
                                     @if (key.IsActive)
                                     {
+                                        <button type="button"
+                                                class="btn btn-warning btn-update"
+                                                data-id="@key.Id">
+                                            Update
+                                        </button>
+
                                         <!-- Delete Button -->
                                         <button class="btn btn-link text-danger"
                                                 data-bs-toggle="modal"
@@ -180,6 +186,8 @@
                                             @endpoint.Url - @endpoint.Description
                                         </label>
                                     </div>
+
+
                                 }
                             }
                         }
@@ -197,7 +205,21 @@
 </div>
 
 
+<!-- Update key Modal -->
+<div class="modal fade" id="updateKeyModal" tabindex="-1" aria-labelledby="updateKeyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Key</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="updateKeyModalContent"></div>
 
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteTokenModal" tabindex="-1" aria-labelledby="deleteTokenModalLabel" aria-hidden="true">
@@ -244,6 +266,28 @@
                     // Update hidden input and message in modal
                     modalKeyIdInput.value = keyId;
                     modalDeleteMessage.querySelector('strong').textContent = keyName;
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Attach click event to the Update buttons
+            document.querySelectorAll('.btn-update').forEach(button => {
+                button.addEventListener('click', function () {
+                    const config = this.dataset.id;
+
+                    // Fetch the partial view from the server
+                    fetch(`/Service/GetKeyUpdateModal?id=${config}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            // Insert the partial view's content into the modal
+                            document.getElementById('updateKeyModalContent').innerHTML = html;
+
+                            // Show the modal
+                            new bootstrap.Modal(document.getElementById('updateKeyModal')).show();
+                        });
                 });
             });
         });

@@ -13,6 +13,6 @@ namespace Escs_Client.Interfaces
         Task<BaseResult> CreateKeyAllowedEndpoint(CreateKeyAllowedEndpointRequest createKeyAllowedEndpointRequest);
         Task<BaseResult<IEnumerable<ServiceEndpointRegisterByUserResponse>>> GetServiceEndpointRegisterByUser(long userId);
 
-
+        Task<BaseResult<UserApiKeyDetailResponse>> GetKeyDetailById(long id);
     }
 }
