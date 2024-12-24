@@ -330,6 +330,35 @@
         });
     </script>
 
-  
+    <script>
+        $(document).on('submit', '#updateKeyForm', function (event) {
+            event.preventDefault();
+
+            const form = $(this);
+            const formData = form.serialize();
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log(response); // Debug response
+                    if (response.success) {
+                        $('#updateKeyModal').modal('hide'); // Close the modal
+                        location.reload(); // Reload the page
+                    } else {
+                        // Display error message without closing the modal
+                        $('#keyUpdateError')
+                            .removeClass('d-none')
+                            .text(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error); // Debug error
+                    alert("An error occurred while processing your request.");
+                }
+            });
+        });
+    </script>
 
 }

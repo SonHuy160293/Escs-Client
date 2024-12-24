@@ -21,7 +21,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions<CreateKeyAllowedEndpointRequest>.UnAuthenticated(
                     isSerialized: false,
                     isRetry: false,
@@ -30,7 +30,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var createUserApiKeyResult = await _httpCaller.PostAsync<CreateKeyAllowedEndpointRequest, bool>(httpCallOptions);
                 if (createUserApiKeyResult.Succeeded)
                 {
@@ -41,7 +41,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "CreateKeyAllowedEndpoint occured exception");
                 throw;
             }
         }
@@ -50,7 +50,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions<CreateUserApiKeyRequest>.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -59,7 +59,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var createUserApiKeyResult = await _httpCaller.PostAsync<CreateUserApiKeyRequest, long>(httpCallOptions);
                 if (createUserApiKeyResult.Succeeded)
                 {
@@ -70,7 +70,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "CreateUserApiKey occured exception");
                 throw;
             }
         }
@@ -79,7 +79,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions<CreateUserApiKeyAllowedEndpointTransactionRequest>.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -88,8 +88,8 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
-                var createUserApiKeyResult = await _httpCaller.PostAsync<CreateUserApiKeyAllowedEndpointTransactionRequest, long>(httpCallOptions);
+
+                var createUserApiKeyResult = await _httpCaller.PostAsync<CreateUserApiKeyAllowedEndpointTransactionRequest, bool>(httpCallOptions);
                 if (createUserApiKeyResult.Succeeded)
                 {
                     return BaseResult.Success();
@@ -99,7 +99,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "CreateUserApiKeyAllowedEndpointTransaction occured exception");
                 throw;
             }
         }
@@ -108,7 +108,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -116,7 +116,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var endpointResult = await _httpCaller.GetAsync<IEnumerable<UserApiKeyDetailResponse>>(httpCallOptions);
                 if (endpointResult.Succeeded)
                 {
@@ -127,7 +127,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get key detail occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetKeyDetail occured exception");
                 throw;
             }
         }
@@ -136,7 +136,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -144,7 +144,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var endpointResult = await _httpCaller.GetAsync<UserApiKeyDetailResponse>(httpCallOptions);
                 if (endpointResult.Succeeded)
                 {
@@ -155,7 +155,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get key detail occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetKeyDetailById occured exception");
                 throw;
             }
         }
@@ -164,7 +164,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -172,7 +172,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var endpointResult = await _httpCaller.GetAsync<IEnumerable<ServiceEndpointRegisterByUserResponse>>(httpCallOptions);
                 if (endpointResult.Succeeded)
                 {
@@ -183,7 +183,36 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get key detail occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetServiceEndpointRegisterByUser occured exception");
+                throw;
+            }
+        }
+
+        public async Task<BaseResult> UpdateUserApiKeyAllowed(UpdateEndpointOfKeyRequest updateEndpointOfKeyRequest)
+        {
+            try
+            {
+
+                var httpCallOptions = HttpCallOptions<UpdateEndpointOfKeyRequest>.UnAuthenticated(
+                    isSerialized: true,
+                    isRetry: false,
+                    body: updateEndpointOfKeyRequest,
+                    baseUrl: "http://localhost:5212/api/Users/api-key-allowed",
+                    queryStringElements: new List<string>()
+                );
+
+
+                var updateUserApiKeyResult = await _httpCaller.PutAsync<UpdateEndpointOfKeyRequest, bool>(httpCallOptions);
+                if (updateUserApiKeyResult.Succeeded)
+                {
+                    return BaseResult.Success();
+                }
+                return BaseResult.Failure(updateUserApiKeyResult.ExceptionError.StatusCode.ToString(), updateUserApiKeyResult.ExceptionError.Message);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "UpdateUserApiKeyStatus occured exception");
                 throw;
             }
         }
@@ -192,7 +221,7 @@ namespace Escs_Client.Services
         {
             try
             {
-                // Call the Login API to get the accessToken and refreshToken
+
                 var httpCallOptions = HttpCallOptions<UpdateUserApiKeyRequest>.UnAuthenticated(
                     isSerialized: true,
                     isRetry: false,
@@ -201,7 +230,7 @@ namespace Escs_Client.Services
                     queryStringElements: new List<string>()
                 );
 
-                // Use LoginResponse as the data type
+
                 var updateUserApiKeyResult = await _httpCaller.PutAsync<UpdateUserApiKeyRequest, long>(httpCallOptions);
                 if (updateUserApiKeyResult.Succeeded)
                 {
@@ -212,7 +241,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Update endpoint occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "UpdateUserApiKeyStatus occured exception");
                 throw;
             }
         }

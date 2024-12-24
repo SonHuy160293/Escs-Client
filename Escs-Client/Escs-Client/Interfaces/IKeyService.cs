@@ -14,5 +14,7 @@ namespace Escs_Client.Interfaces
         Task<BaseResult<IEnumerable<ServiceEndpointRegisterByUserResponse>>> GetServiceEndpointRegisterByUser(long userId);
 
         Task<BaseResult<UserApiKeyDetailResponse>> GetKeyDetailById(long id);
+
+        Task<BaseResult> UpdateUserApiKeyAllowed(UpdateEndpointOfKeyRequest updateEndpointOfKeyRequest);
     }
 }

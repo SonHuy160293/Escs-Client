@@ -150,8 +150,6 @@ namespace Escs_Client.Controllers
 
 
 
-
-
             if (serviceEndpointResult.Succeeded)
             {
                 ViewBag.EndpointsNotChecked = endpointsNotChecked;
@@ -163,6 +161,32 @@ namespace Escs_Client.Controllers
             }
             // Return the partial view with the model
             return PartialView("_UpdateKeyPartial", key.Data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateKeyAllowed(UpdateEndpointOfKeyRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "Invalid request data." });
+            }
+
+            try
+            {
+                var result = await _keyService.UpdateUserApiKeyAllowed(request);
+
+                if (result.Succeeded)
+                {
+                    return Json(new { success = true, message = "Key updated successfully." });
+                }
+
+                return Json(new { success = false, message = result.ErrorMessage });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { success = false, message = "An unexpected error occurred." });
+            }
         }
 
         [Authorize]

@@ -1,7 +1,8 @@
 ﻿@model Escs_Client.ViewModels.UserApiKeyDetailResponse
 
-<form asp-action="UpdateUserEmailConfig" method="post">
-    <input type="hidden" name="Id" value="@Model.Id" />
+<form action="/Service/UpdateKeyAllowed" method="post" id="updateKeyForm">
+
+    <input type="hidden" name="KeyId" value="@Model.Id" />
     <div class="mb-3">
         <label for="key" class="form-label">Key</label>
         <input type="text" class="form-control" id="key" name="Key" value="@Model.Key" readonly>
@@ -72,9 +73,7 @@
         }
     </div>
 
-    
-    
-    
     <button type="submit" class="btn btn-primary">Save Changes</button>
+    <div id="keyUpdateError" class="d-none alert alert-danger mt-2"></div>
 </form>
 

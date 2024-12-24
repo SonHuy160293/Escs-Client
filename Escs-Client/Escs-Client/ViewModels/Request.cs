@@ -28,6 +28,13 @@
         public bool IsActive { get; set; }
     }
 
+    public class UpdateEndpointOfKeyRequest
+    {
+        public long KeyId { get; set; }
+        public List<long> EndpointsId { get; set; }
+
+    }
+
     public class CreateKeyAllowedEndpointRequest
     {
         public long UserApiKeyId { get; set; }

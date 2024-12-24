@@ -104,7 +104,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetEmailConfigurationByUserId occured exception");
                 throw;
             }
         }
@@ -135,7 +135,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetEmailConfigurationDetailByUserId occured exception");
                 throw;
             }
         }
@@ -163,7 +163,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetEndpointOfEmailService occured exception");
                 throw;
             }
         }
@@ -191,7 +191,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Create email configuration occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetUserInEmailServiceWithPaging occured exception");
                 throw;
             }
         }
@@ -220,7 +220,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Update endpoint occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "UpdateUserEmailConfigRequest occured exception");
                 throw;
             }
         }

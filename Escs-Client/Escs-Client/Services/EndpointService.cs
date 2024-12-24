@@ -69,7 +69,7 @@ namespace Escs_Client.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "Get key detail occured exception");
+                _logger.LogError(ex.Message, ex.InnerException, ex.InnerException, "GetEndpointById occured exception");
                 throw;
             }
         }
