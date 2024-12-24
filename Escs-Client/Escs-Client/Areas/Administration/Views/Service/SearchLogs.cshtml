@@ -707,6 +707,15 @@
                 const searchTerm = $('#searchTerm').val() || '';
                 const sortByValue = $('#sortBy').val(); // Get the value from the select
                 const sortBy = sortByValue === 'true'; // Convert the string value to a boolean
+                const includes = [
+                    '@@timestamp',
+                    'fields.CorrelationId',
+                    'level',
+                    'message',
+                    'fields.Method',
+                    'fields.RequestPath',
+                ];
+
 
                 console.log(filters);
                 console.log(filterFromDate);
@@ -727,6 +736,7 @@
                         Index: '@index',
                         SearchTerm: searchTerm,
                         Filters: filters,
+                        Includes: includes,
                         IsLatest: sortBy,
                     }),
                     success: function (response) {
@@ -886,6 +896,7 @@
             // Reset button click
             $('#resetButton').click(function () {
                 $('#fromDate').val('');
+                $('#fromDate').prop('disabled', false);
                 $('#toDate').val('');
                 $('#toDate').prop('disabled', true);
                 $('#relativeFilter').prop('disabled', false);

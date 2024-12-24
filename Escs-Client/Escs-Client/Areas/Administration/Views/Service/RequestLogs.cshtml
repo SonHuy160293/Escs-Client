@@ -985,6 +985,7 @@
             // Reset button click
             $('#resetButton').click(function () {
                 $('#fromDate').val('');
+                $('#fromDate').prop('disabled', false);
                 $('#toDate').val('');
                 $('#toDate').prop('disabled', true);
                 $('#relativeFilter').prop('disabled', false);
